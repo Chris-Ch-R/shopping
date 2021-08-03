@@ -1,0 +1,74 @@
+{
+    "goods":[
+        {
+            "name": "กระเป๋าสตางค์ใบสั้น Forever Young 243",
+            "price": 159,
+            "amount": 10,
+            "img": "@/assets/logo.png"
+
+        },
+        {
+            "name": "กระบองเพชรเต้นได้ 120 เพลง",
+            "price": 232,
+            "amount": 10,
+            "img": "@/assets/logo.png"
+
+        },
+        {
+            "name": "โต๊ะทำงานไม้ โต๊ะคอมพิวเตอร์",
+            "price": 299,
+            "amount": 10,
+            "img": "@/assets/logo.png"
+
+        },
+        {
+            "name": "ราวแขวนทรงสี่เหลี่ยม ราวแขวนผ้า",
+            "price": 289,
+            "amount": 10,
+            "img": "@/assets/logo.png"
+
+        },
+        {
+            "name": "โต๊ะญี่ปุ่น",
+            "price": 499,
+            "amount": 1500,
+            "img": "@/assets/logo.png"
+
+        },
+        {
+            "name": "ชั้นเก็บของ",
+            "price": 1100,
+            "amount": 10,
+            "img": "@/assets/logo.png"
+
+        },
+        {
+            "name": "พรมปูพื้น",
+            "price": 259,
+            "amount": 10,
+            "img": "@/assets/logo.png"
+
+        },
+        {
+            "name": "กระทะไฟฟ้าเอนกประสงค์",
+            "price": 699,
+            "amount": 10,
+            "img": "@/assets/logo.png"
+
+        },
+        {
+            "name": "Xiaomi Robot Vacuum Cleaner",
+            "price": 6199,
+            "amount": 242,
+            "img": "@/assets/logo.png"
+
+        },
+        {
+            "name": "เตาปิ้งย่างไฟฟ้า",
+            "price": 369,
+            "amount": 10,
+            "img": "@/assets/taoping.jpg"
+
+        }
+    ]
+}

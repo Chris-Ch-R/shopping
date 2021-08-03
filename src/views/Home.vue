@@ -1,18 +1,41 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="grid grid-cols-5 gap-2">
+    <div v-for="(good, index) in goods" :key="index">
+      <shopping-card
+        :name="good.name"
+        :price="good.price"
+        :amount="good.amount"
+        setImage="@/assets/taoping.jpg"
+      ></shopping-card>
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import HelloWorld from "@/components/HelloWorld.vue";
+import ShoppingCard from "@/components/ShoppingCard.vue";
+import GoodsStore from "@/store/Goods";
 
 export default {
-  name: 'Home',
+  data() {
+    return {
+      goods: [],
+    };
+  },
   components: {
-    HelloWorld
-  }
-}
+    HelloWorld,
+    ShoppingCard,
+  },
+  created() {
+    this.fetchGoods();
+  },
+  methods: {
+    async fetchGoods() {
+      await GoodsStore.dispatch("fetchGoods");
+
+      this.goods = GoodsStore.getters.goods;
+      console.log(this.goods);
+    },
+  },
+};
 </script>
