@@ -1,72 +1,92 @@
 {
     "goods":[
         {
-            "name": "กระเป๋าสตางค์ใบสั้น Forever Young 243",
-            "price": 159,
+            "goodName": "กระเป๋าสตางค์ใบสั้น Forever Young 243",
+            "cost": 159,
             "amount": 10,
+            "cost_type": "coin",
+            "detail": "detail",
             "img": "@/assets/logo.png"
 
         },
         {
-            "name": "กระบองเพชรเต้นได้ 120 เพลง",
-            "price": 232,
+            "goodName": "กระบองเพชรเต้นได้ 120 เพลง",
+            "cost": 232,
             "amount": 10,
+            "cost_type": "coin",
+            "detail": "detail",
             "img": "@/assets/logo.png"
 
         },
         {
-            "name": "โต๊ะทำงานไม้ โต๊ะคอมพิวเตอร์",
-            "price": 299,
+            "goodName": "โต๊ะทำงานไม้ โต๊ะคอมพิวเตอร์",
+            "cost": 299,
             "amount": 10,
+            "cost_type": "coin",
+            "detail": "detail",
             "img": "@/assets/logo.png"
 
         },
         {
-            "name": "ราวแขวนทรงสี่เหลี่ยม ราวแขวนผ้า",
-            "price": 289,
+            "goodName": "ราวแขวนทรงสี่เหลี่ยม ราวแขวนผ้า",
+            "cost": 289,
             "amount": 10,
+            "cost_type": "coin",
+            "detail": "detail",
             "img": "@/assets/logo.png"
 
         },
         {
-            "name": "โต๊ะญี่ปุ่น",
-            "price": 499,
+            "goodName": "โต๊ะญี่ปุ่น",
+            "cost": 499,
             "amount": 1500,
+            "cost_type": "coin",
+            "detail": "detail",
             "img": "@/assets/logo.png"
 
         },
         {
-            "name": "ชั้นเก็บของ",
-            "price": 1100,
+            "goodName": "ชั้นเก็บของ",
+            "cost": 1100,
             "amount": 10,
+            "cost_type": "coin",
+            "detail": "detail",
             "img": "@/assets/logo.png"
 
         },
         {
-            "name": "พรมปูพื้น",
-            "price": 259,
+            "goodName": "พรมปูพื้น",
+            "cost": 259,
             "amount": 10,
+            "cost_type": "coin",
+            "detail": "detail",
             "img": "@/assets/logo.png"
 
         },
         {
-            "name": "กระทะไฟฟ้าเอนกประสงค์",
-            "price": 699,
+            "goodName": "กระทะไฟฟ้าเอนกประสงค์",
+            "cost": 699,
             "amount": 10,
+            "cost_type": "coin",
+            "detail": "detail",
             "img": "@/assets/logo.png"
 
         },
         {
-            "name": "Xiaomi Robot Vacuum Cleaner",
-            "price": 6199,
+            "goodName": "Xiaomi Robot Vacuum Cleaner",
+            "cost": 6199,
             "amount": 242,
+            "cost_type": "coin",
+            "detail": "detail",
             "img": "@/assets/logo.png"
 
         },
         {
-            "name": "เตาปิ้งย่างไฟฟ้า",
-            "price": 369,
+            "goodName": "เตาปิ้งย่างไฟฟ้า",
+            "cost": 369,
             "amount": 10,
+            "cost_type": "coin",
+            "detail": "detail",
             "img": "@/assets/taoping.jpg"
 
         }

@@ -3,7 +3,7 @@
     <div v-for="(good, index) in goods" :key="index">
       <shopping-card
         :name="good.name"
-        :price="good.price"
+        :price="good.cost"
         :amount="good.amount"
         setImage="@/assets/taoping.jpg"
       ></shopping-card>
@@ -14,7 +14,8 @@
 <script>
 import HelloWorld from "@/components/HelloWorld.vue";
 import ShoppingCard from "@/components/ShoppingCard.vue";
-import GoodsStore from "@/store/Goods";
+import ManageGoodsTable from "@/components/ManageGoodsTable.vue";
+import GoodsStore from "@/store/GoodsStore";
 
 export default {
   data() {
@@ -25,13 +26,14 @@ export default {
   components: {
     HelloWorld,
     ShoppingCard,
+    ManageGoodsTable,
   },
   created() {
-    this.fetchGoods();
+    this.getGoods();
   },
   methods: {
-    async fetchGoods() {
-      await GoodsStore.dispatch("fetchGoods");
+    async getGoods() {
+      await GoodsStore.dispatch("getGoods");
 
       this.goods = GoodsStore.getters.goods;
       console.log(this.goods);
