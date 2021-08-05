@@ -1,0 +1,38 @@
+import Vue from 'vue'
+import Vuex from 'vuex'
+import AuthService from '@/services/AuthService'
+
+Vue.use(Vuex)
+
+export default new Vuex.Store({
+    state: {
+        user: AuthService.getUser()
+    },
+    getters: {
+        user:state => state.user
+    },
+    mutations: {
+        update(state){
+            state.user = AuthService.getUser(),
+            isAuthen;() => {return AuthService.isAuthen()}
+        }
+    },
+    actions: {
+        async login({ commit }, data) {
+            let err = await AuthService.login(data)
+            commit('update')
+            return err
+        },
+        logout({ commit }) {
+            AuthService.logout()
+            commit('update')
+        },
+        async register({ commit }, data) {
+            let err = await AuthService.register(data)
+            commit('update')
+            return err
+        }
+    },
+    modules: {
+    }
+})

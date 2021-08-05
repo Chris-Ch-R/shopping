@@ -15,6 +15,11 @@ export default {
                     localStorage.setItem(auth_key ,JSON.stringify(res.data))
                     console.log(res.data)
                     console.log(this.getUser())
+                    return{
+                        success: true,
+                        user: res.data.user,
+                        jwt: res.data.jwt
+                    }
                 }else{
                     console.log(res.message)
                 }

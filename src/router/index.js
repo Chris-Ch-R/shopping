@@ -4,6 +4,9 @@ import Home from '../views/Home.vue'
 import ManageGoods from '../views/ManageGoods'
 import Rewards from '../views/Rewards'
 import LeaderBoard from '../views/LeaderBoard'
+import Login from '@/views/Login'
+import Logout from '@/views/Logout'
+import Register from '@/views/Register'
 
 Vue.use(VueRouter)
 
@@ -35,7 +38,22 @@ const routes = [
     path: '/leader_board',
     name: 'LeaderBoard',
     component: LeaderBoard
-  }
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
+  },
+  {
+    path: '/logout',
+    name: 'Logout',
+    component: Logout
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: Register
+  },
 ]
 
 const router = new VueRouter({
