@@ -1,11 +1,11 @@
 <template>
   <div class="grid grid-cols-5 gap-2">
-    <div v-for="(good, index) in goods" :key="index">
+    <div v-for="(good, index) in goods.data" :key="index">
       <shopping-card
-        :name="good.name"
+        :name="good.goodName"
         :price="good.cost"
         :amount="good.amount"
-        setImage="@/assets/taoping.jpg"
+        :setImage="`http://localhost:1337${good.pic.url}`"
       ></shopping-card>
     </div>
   </div>
@@ -33,10 +33,7 @@ export default {
   },
   methods: {
     async getGoods() {
-      await GoodsStore.dispatch("getGoods");
-
-      this.goods = GoodsStore.getters.goods;
-      console.log(this.goods);
+      this.goods = await GoodsStore.getters.allGood
     },
   },
 };

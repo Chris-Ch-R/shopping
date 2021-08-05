@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import ManageGoods from '../views/ManageGoods'
+import Rewards from '../views/Rewards'
+import LeaderBoard from '../views/LeaderBoard'
 
 Vue.use(VueRouter)
 
@@ -23,6 +25,16 @@ const routes = [
     path: '/ManageGoods',
     name: 'ManageGoods',
     component: ManageGoods
+  },
+  {
+    path: '/reward',
+    name: 'Reward',
+    component: Rewards
+  },
+  {
+    path: '/leader_board',
+    name: 'LeaderBoard',
+    component: LeaderBoard
   }
 ]
 

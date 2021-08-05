@@ -1,65 +1,43 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import Axios from "axios";
-
-let api_path = "/mock/mockup.json";
+import GoodManage from './GoodManage'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {
-    goods: [],
-    rewards: []
-  },
-  getters: {
-    goods: (state) => state.goods,
-    rewards: (state) => state.rewards
-  },
-  mutations: {
-    getGoods(state, { res }) {
-      state.goods = res.data.goods
+    state: {
+        allGood: GoodManage.getAllGoodsData(),
+        normalGood: GoodManage.getNormalGoodsData(),
+        rewardGood: GoodManage.getRewardGoodsData()
     },
-    addGoods(state, { payload }) {
-      state.goods.push(payload);
+    mutations: {
+        async update(state) {
+            state.normalGood = await GoodManage.getNormalGoodsData()
+            state.rewardGood = await GoodManage.getRewardGoodsData()
+            state.allGood = await GoodManage.getAllGoodsData()
+        }
+    },getters:{
+        allGood: state => state.allGood,
+        normalGood: state => state.normalGood,
+        rewardGood: state => state.rewardGood
     },
-    deleteGoods() {
-
+    actions: {
+        async addGood({ commit }, {goodName, cost, cost_type, detail, pic}) {
+            let err = await GoodManage.addGood(goodName, cost, cost_type, detail, pic)
+            await commit('update')
+            return err
+        },
+        async removeGood({ commit }, { id }) {
+            let err = await GoodManage.removeGood(id)
+            await commit('update')
+            return err
+        },
+        async updateGood({ commit }, { id, newBody }) {
+            let err = await GoodManage.updateGood(id, newBody)
+            await commit('update')
+            return err
+        }
     },
-    editGoods(state, { payload }) {
-      state.goods[payload.index].goodName = payload.goodName
-      state.goods[payload.index].cost = payload.cost
-      state.goods[payload.index].amount = payload.amount
-      state.goods[payload.index].cost_type = payload.cost_type
-      state.goods[payload.index].detail = payload.detail
-    },
-    increaseGood(state, { payload }) {
-      state.goods[payload.index].amount += payload.amount
-    },
-    decreaseGood(state, { payload }) {
-      state.goods[payload.index].amount -= payload.amount
+    modules: {
     }
-  },
-  actions: {
-    async getGoods({ commit }) {
-      let res = await Axios.get(api_path)
-      commit('getGoods', { res })
-    },
-    addGoods({ commit }, payload) {
-      commit('addGoods', { payload })
-    },
-    deleteGoods() {
-
-    },
-    editGoods({ commit }, payload) {
-      commit("editGoods", { payload })
-    },
-    increaseGood({ commit }, payload) {
-      commit("increaseGood", { payload })
-    },
-    decreaseGood({ commit }, payload) {
-      commit("decreaseGood", { payload })
-    }
-  },
-  modules: {
-  }
 })

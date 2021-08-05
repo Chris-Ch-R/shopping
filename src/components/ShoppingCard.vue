@@ -5,7 +5,7 @@
         <img
           class=" bg-cover "
           style="width: 250px; height: 200px"
-          src="@/assets/logo.png"
+          :src="setImage"
         />
       </div>
       <div class="px-3 pb-2">
@@ -21,6 +21,11 @@
         <div class="mb-2">
           จำนวนคงเหลือ: {{amount}}
         </div>
+      </div>
+      <div>
+        <button>
+          AddtoCart
+        </button>
       </div>
     </div>
   </div>
@@ -41,8 +46,7 @@ export default {
         setImage: String
     },
     created(){
-        // console.log(this.setImage);
-        console.log(this.urlImage);
+        
     }
 
 };
