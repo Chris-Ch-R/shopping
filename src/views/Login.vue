@@ -94,7 +94,7 @@ h1{
 }
 .form-item1 input{
   margin: -250px 0px 20px 500px;
-  background-image: url('C:/laragon/www/shopping/src/assets/login.png');
+  /* background-image: url('C:/laragon/www/shopping/src/assets/login.png'); */
 }
 .form-item2 input{
   margin: 50px 0px 20px 500px;

@@ -14,7 +14,10 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta:{
+      layout: "Nav2"
+    }
   },
   {
     path: '/about',
@@ -27,17 +30,26 @@ const routes = [
   {
     path: '/ManageGoods',
     name: 'ManageGoods',
-    component: ManageGoods
+    component: ManageGoods,
+    meta:{
+      layout: "Nav2"
+    }
   },
   {
     path: '/reward',
     name: 'Reward',
-    component: Rewards
+    component: Rewards,
+    meta:{
+      layout: "Nav2"
+    }
   },
   {
     path: '/leader_board',
     name: 'LeaderBoard',
-    component: LeaderBoard
+    component: LeaderBoard,
+    meta:{
+      layout: "Nav2"
+    }
   },
   {
     path: '/login',

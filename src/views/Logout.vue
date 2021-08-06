@@ -9,7 +9,7 @@
 import AuthUser from '@/store/UserAuth'
 export default {
     mounted(){
-        AuthUser.logout()
+        AuthUser.dispatch('logout')
         this.$router.push('/login')
     }
 }

@@ -175,7 +175,7 @@ export default {
   methods: {
     async getGoods() {
       this.goods = await GoodsStore.getters.allGood;
-      // console.log(this.goods.data);
+      console.log(this.goods.data);
     },
     openForm(index, good) {
       this.editIndex = index;
