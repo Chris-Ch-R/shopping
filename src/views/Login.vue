@@ -122,7 +122,7 @@ h1{
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
-  width: 70px
+  width: 80px
 }
 a:link{
     color:red;
