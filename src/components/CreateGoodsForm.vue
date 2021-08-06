@@ -10,22 +10,33 @@
 
       <div>
         <label for="name">cost</label>
-        <input type="text" v-model="form.cost" />
+        <input type="number" v-model="form.cost" />
       </div>
 
       <div>
         <label for="type">cost_type</label>
-        <input type="text" v-model="form.cost_type" />
+        <select
+          id="vehicle_id"
+          name="vehicle_id"
+          class="mt-1 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          @change="changeCategory"
+          v-model="form.cost_type"
+        >
+          <option value="">-- select cost type --</option>
+          <option value="coin">coin</option>
+          <option value="points">points</option>
+        </select>
+        <!-- <input type="text" v-model="form.cost_type" /> -->
       </div>
 
       <div>
         <label for="type">detail</label>
-        <input type="text" v-model="form.detail" />
+        <textarea  v-model="form.detail" />
       </div>
 
       <div>
         <label for="type">amount</label>
-        <input type="text" v-model="form.amount" />
+        <input type="number" v-model="form.amount" />
       </div>
 
       <div>
@@ -102,6 +113,7 @@ export default {
         console.log(err);
       });
       this.clearForm();
+      location.reload();
     },
     handleChange(event) {
       this.file = event.target.files[0];

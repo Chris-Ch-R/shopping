@@ -1,56 +1,5 @@
 <template>
-  <!-- <div>
-    <table>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>goodName</th>
-          <th>cost</th>
-          <th>cost_type</th>
-          <th>detail</th>
-          <th>amount</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(good, index) in goods.data" :key="index">
-          <td>{{ index + 1 }}</td>
-          <td v-if="index !== editIndex">{{ good.goodName }}</td>
-          <td v-if="index === editIndex">
-            <input v-model="form.goodName" type="text" />
-          </td>
-
-          <td v-if="index !== editIndex">{{ good.cost }}</td>
-          <td v-if="index === editIndex">
-            <input v-model="form.cost" type="text" />
-          </td>
-
-          <td v-if="index !== editIndex">{{ good.cost_type }}</td>
-          <td v-if="index === editIndex">
-            <input v-model="form.cost_type" type="text" />
-          </td>
-
-          <td v-if="index !== editIndex">{{ good.detail }}</td>
-          <td v-if="index === editIndex">
-            <input v-model="form.detail" type="text" />
-          </td>
-
-          <td v-if="index !== editIndex">{{ good.amount }}</td>
-          <td v-if="index === editIndex">
-            <input v-model="form.amount" type="text" />
-          </td>
-
-          <td v-if="index !== editIndex">
-            <button @click="openForm(index, good)">Click to edit</button>
-          </td>
-          <td v-if="index === editIndex">
-            <button @click="editGood">update</button>
-            <button @click="closeForm">Cancle</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div> -->
-
+  
   <div class="overflow-x-auto">
     <div
       class="min-w-screen min-h-screen bg-gray-100 flex items-center justify-center bg-gray-100 font-sans overflow-hidden"
@@ -64,9 +13,9 @@
               >
                 <th class="py-3 px-6 text-left">#</th>
                 <th class="py-3 px-6 text-left">GoodName</th>
-                <th class="py-3 px-6 text-center">cost</th>
-                <th class="py-3 px-6 text-center">cost_type</th>
-                <th class="py-3 px-6 text-center">detail</th>
+                <th class="py-3 px-6 text-center">Cost</th>
+                <th class="py-3 px-6 text-center">Cost_type</th>
+                <th class="py-3 px-6 text-center">Detail</th>
                 <th class="py-3 px-6 text-center">Actions</th>
               </tr>
             </thead>
@@ -108,9 +57,13 @@
                 </td>
 
                 <td class="py-3 px-6 text-center">
-                  <div class="flex item-center justify-center">
+                  <div
+                    v-if="index !== editIndex"
+                    class="flex item-center justify-center"
+                  >
                     <div
                       class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
+                      @click="openForm(index, good)"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -122,19 +75,37 @@
                           stroke-linecap="round"
                           stroke-linejoin="round"
                           stroke-width="2"
-                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                        />
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                          d="M 4 8 L 10 1 L 13 0 L 12 3 L 5 9 C 6 10 6 11 7 10 C 7 11 8 12 7 12 A 1.42 1.42 0 0 1 6 13 A 5 5 0 0 0 4 10 Q 3.5 9.9 3.5 10.5 T 2 11.8 T 1.2 11 T 2.5 9.5 T 3 9 A 5 5 90 0 0 0 7 A 1.42 1.42 0 0 1 1 6 C 1 5 2 6 3 6 C 2 7 3 7 4 8 M 10 1 L 10 3 L 12 3 L 10.2 2.8 L 10 1"
                         />
                       </svg>
                     </div>
                     <div
                       class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
-                      @click="openForm(index, good)"
+                      @click="deleteGood(good)"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                  
+                  <div
+                    v-if="index === editIndex"
+                    class="flex item-center justify-center"
+                  >
+                    <div
+                      class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
+                      @click="editGood(good)"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -152,6 +123,7 @@
                     </div>
                     <div
                       class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
+                      @click="closeForm"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -169,14 +141,6 @@
                     </div>
                   </div>
                 </td>
-
-                <td v-if="index !== editIndex">
-                  <button @click="openForm(index, good)">Click to edit</button>
-                </td>
-                <td v-if="index === editIndex">
-                  <button @click="editGood">update</button>
-                  <button @click="closeForm">Cancle</button>
-                </td>
               </tr>
             </tbody>
           </table>
@@ -188,6 +152,7 @@
 
 <script>
 import GoodsStore from "@/store/GoodsStore";
+import Axios from "axios";
 export default {
   data() {
     return {
@@ -203,12 +168,14 @@ export default {
     };
   },
   created() {
+    
     this.getGoods();
+
   },
   methods: {
     async getGoods() {
       this.goods = await GoodsStore.getters.allGood;
-      console.log(this.goods.data);
+      // console.log(this.goods.data);
     },
     openForm(index, good) {
       this.editIndex = index;
@@ -228,19 +195,31 @@ export default {
         amount: "",
       };
     },
-    editGood() {
+    editGood(good) {
       let payload = {
-        index: this.editIndex,
+        id: good.id,
+        newBody: {
         goodName: this.form.goodName,
         cost: this.form.cost,
         cost_type: this.form.cost_type,
         detail: this.form.detail,
-        amount: this.form.amount,
+        }
+        
       };
 
-      // GoodsStore.dispatch("editGoods", payload);
+      GoodsStore.dispatch("updateGood", payload);
       this.closeForm();
+      
     },
+    deleteGood(good){
+      //todo SweetAlert
+      let payload = {
+        id : good.id
+      }
+      // console.log(good);
+      GoodsStore.dispatch("removeGood", payload)
+      location.reload()
+    }
   },
 };
 </script>
