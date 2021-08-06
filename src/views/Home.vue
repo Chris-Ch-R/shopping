@@ -31,6 +31,7 @@ export default {
   methods: {
     async getGoods() {
       this.goods = await GoodsStore.getters.allGood
+      console.log(this.goods)
     },
   },
 };
