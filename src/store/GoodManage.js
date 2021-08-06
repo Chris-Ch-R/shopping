@@ -31,7 +31,7 @@ export default {
             detail: detail,
             pic: pic
         }, 
-        // headers()
+        headers()
         ).catch((e) => {
             if (e.response.status === 400 || e.response.status === 500 )
                 return e.response.data.message[0].messages[0].message

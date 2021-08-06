@@ -62,8 +62,8 @@ export default {
   },
   created() {
     Axios.post("http://localhost:1337/auth/local", {
-      identifier: "admin",
-      password: "admin1",
+      identifier: "admin@gmail.com",
+      password: "123123",
     })
       .then((response) => {
         console.log("User profile", response.data.user);
