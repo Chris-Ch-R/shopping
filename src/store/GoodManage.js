@@ -43,7 +43,7 @@ export default {
     },
     async removeGood(id) {
         return await axios.delete('http://localhost:1337' + '/goods/' + id, 
-        // headers()
+        headers()
         ).catch((e) => {
             if (e.response.status === 400)
                 return e.response.data.message[0].messages[0].message
@@ -58,7 +58,7 @@ export default {
     },
     async updateGood(id, newBody) {
         return await axios.put('http://localhost:1337' + '/goods/' + id, newBody, 
-        // headers()        
+        headers()        
         )
             .catch((e) => {
                 if (e.response.status === 400)

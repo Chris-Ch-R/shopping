@@ -127,6 +127,5 @@ h1{
 a:link{
     color:red;
     width:190px;
-    margin-left: 600px
 }
 </style>

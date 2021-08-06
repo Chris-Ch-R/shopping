@@ -19,7 +19,7 @@
           id="vehicle_id"
           name="vehicle_id"
           class="mt-1 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-          @change="changeCategory"
+          
           v-model="form.cost_type"
         >
           <option value="">-- select cost type --</option>
@@ -53,13 +53,13 @@
 
 <script>
 import GoodsStore from "@/store/GoodsStore";
+import Authservice from "@/services/AuthService.js"
 import Axios from "axios";
 export default {
   data() {
     return {
       file: "",
       respone: "",
-      tokenData: "",
 
       form: {
         goodName: "",
@@ -72,19 +72,7 @@ export default {
     };
   },
   created() {
-    Axios.post("http://localhost:1337/auth/local", {
-      identifier: "admin@gmail.com",
-      password: "123123",
-    })
-      .then((response) => {
-        console.log("User profile", response.data.user);
-        console.log("User token", response.data.jwt);
-        this.tokenData = response.data.jwt;
-        console.log(this.tokenData);
-      })
-      .catch((error) => {
-        console.log("An error occurred:", error.response);
-      });
+    
   },
   methods: {
     clearForm() {
@@ -126,7 +114,7 @@ export default {
         data,
         {
           headers: {
-            Authorization: `Bearer ${this.tokenData}`,
+            Authorization: `Bearer ${Authservice.getJWT()}`,
           },
         }
       );
