@@ -1,7 +1,7 @@
 <template>
   <div>
     <create-goods-form></create-goods-form>
-     <manage-goods-table></manage-goods-table>
+    <manage-goods-table></manage-goods-table>
   </div>
 </template>
 

@@ -24,7 +24,7 @@
       </div>
       <div>
         <button>
-          AddtoCart
+          buy
         </button>
       </div>
     </div>
@@ -47,7 +47,8 @@ export default {
     },
     created(){
         
-    }
+    },
+
 
 };
 </script>

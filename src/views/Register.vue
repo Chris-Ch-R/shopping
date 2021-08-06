@@ -27,7 +27,7 @@
 </template>
 
 <script>
-//import AuthService from '@/services/AuthService'
+import AuthService from '@/services/AuthService'
 import AuthUser from '@/store/UserAuth'
 export default {
     data(){
@@ -41,15 +41,23 @@ export default {
     },
     methods:{
         async register(){
-            console.log(this.form)
-            // let res = await AuthService.register(this.form)
-            // if(res.success){
-            //     this.$swal("Register Success", `Welcome ${res.user.username}`,'success')
-            //     this.$router.push('/pokedex')
-            // }
-            // else{
-            //     this.$swal('Register Failed', res.message, 'error')
-            // }
+            // console.log(this.form)
+            let payload ={
+                username: this.form.username,
+                email: this.form.email,
+                password: this.form.password
+            }
+            let res = await AuthService.register(payload)
+            // console.log(res);
+            // console.log(res.data.user.username);
+            if(res.status === 200){
+                // console.log("success");
+                this.$swal("Register Success", `Welcome, ${res.data.user.username}`,"success")
+                this.$router.push('/pokedex')
+            }
+            else{
+                this.$swal('Register Failed', res.message, 'error')
+            }
         }
     }
 }

@@ -12,22 +12,19 @@
 </template>
 
 <script>
-import HelloWorld from "@/components/HelloWorld.vue";
 import ShoppingCard from "@/components/ShoppingCard.vue";
-import ManageGoodsTable from "@/components/ManageGoodsTable.vue";
 import GoodsStore from "@/store/GoodsStore";
 
 export default {
+  components: {
+    ShoppingCard,
+  },
   data() {
     return {
       goods: [],
     };
   },
-  components: {
-    HelloWorld,
-    ShoppingCard,
-    ManageGoodsTable,
-  },
+  
   created() {
     this.getGoods();
   },
