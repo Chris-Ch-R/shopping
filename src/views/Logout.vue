@@ -5,12 +5,15 @@
 </template>
 
 <script>
-//import AuthService from '@/services/AuthService'
+import AuthService from '@/services/AuthService'
 import AuthUser from '@/store/UserAuth'
 export default {
     mounted(){
-        AuthUser.logout()
+        console.log(AuthService.getJWT())
+        AuthUser.dispatch('logout')
         this.$router.push('/login')
+        console.log(AuthService.isAuthen())
+        console.log(AuthService.getJWT())
     }
 }
 </script>

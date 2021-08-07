@@ -52,7 +52,7 @@ export default {
     }
     ,
     isAuthen() {
-        return this.getJWT().jwt !== ""
+        return this.getJWT() !== ""
     },
     async register({username, email, password}) {
         let body = {
