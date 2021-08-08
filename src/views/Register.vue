@@ -1,30 +1,4 @@
 <template>
-  <!-- <div class="bg">
-      <h1>Register</h1>
-      <form @submit.prevent="register">
-          <div class="form">
-            <div class="form-group">
-                <label for="username" class="label-name"><span class="content-name">Username</span></label>
-                <input v-model="form.username" type="text" autocomplete="off" placeholder="" id='username' required>
-            </div>
-            
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input v-model="form.email" type="text" autocomplete="off" placeholder="email">
-            </div>
-
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input v-model="form.password" type="password">
-            </div>
-
-            <div class="form-group">
-                <button type="submit">Register</button>
-            </div>
-          </div>
-
-      </form>
-  </div> -->
     <div class="bg">
         <h1>REGISTER</h1>
         <form @submit.prevent="register">
@@ -52,7 +26,7 @@
                 </div>
 
                 <div class="form-group">
-                    <button type="submit">Register</button>
+                    <button class="btn2" type="submit">REGISTER</button>
                 </div>
             </div>
 
@@ -82,17 +56,17 @@ export default {
                 password: this.form.password
             }
             console.log(this.form)
-            // let res = await AuthService.register(payload)
-            // console.log(res);
-            // console.log(res.data.user.username);
-            // if(res.status === 200){
-            //     // console.log("success");
-            //     this.$swal("Register Success", `Welcome, ${res.data.user.username}`,"success")
-            //     this.$router.push('/')
-            // }
-            // else{
-            //     this.$swal('Register Failed', res.message, 'error')
-            // }
+            let res = await AuthService.register(payload)
+            console.log(res);
+            console.log(res.data.user.username);
+            if(res.status === 200){
+                // console.log("success");
+                this.$swal("Register Success", `Welcome, ${res.data.user.username}`,"success")
+                this.$router.push('/')
+            }
+            else{
+                this.$swal('Register Failed', res.message, 'error')
+            }
         }
     }
 }
@@ -100,4 +74,5 @@ export default {
 
 <style scoped lang="scss">
 @import '@/assets/cssRegister.scss';
+@import '@/assets/cssAddCoin.scss'
 </style>
