@@ -15,6 +15,11 @@ export default new Vuex.Store({
     async update(state) {
       state.userAccounting = await BuyManage.getAccounting()
     },
+    clearOrder(state){
+      state.orders = new Map()
+      state.ordersArr = {data: []}
+      localStorage.removeItem(AuthService.getUser().email+'_orders')
+    },
     addOrder(state, { good, amount }) {
       state.orders.set(good.id, { good, amount })
       state.ordersArr.data = Array.from(state.orders.values())
@@ -28,15 +33,16 @@ export default new Vuex.Store({
   },
   getters: {
     userAccounting: state => state.userAccounting,
-    ordersArr: state => state.orders
+    ordersArr: state => state.ordersArr
   }
   ,
   actions: {
     async buy({ commit }) {
       if (AuthService.isAuthen()){
-        return await BuyManage.buy(this.getters.ordersArr.data).then((err) => {
+        return await BuyManage.buy(this.getters.ordersArr.data).then(({data, err}) => {
           if (!err){
             commit('update')
+            commit('clearOrder')
           }
           else return err
         })
