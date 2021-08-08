@@ -1,0 +1,102 @@
+$yellow: #f1c40f;
+
+.grid-wrapper{
+    --auto-grid-min-size: 10rem;
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size), 1fr));
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+.grid-wrapper li{
+    background-color: #FCF3CF   ;
+    color: black;
+    font-size: 24px;
+    list-style-type: none;
+    padding: 1rem 1rem;
+    text-align: center;
+    text-transform: capitalize;
+    font-weight: 600;
+}
+.main-container{
+    margin: 0 auto;
+    max-width: 500px;
+    padding:2rem 1rem;
+}
+
+.btn1,.btn2 {
+    box-sizing: border-box;
+    //appearance: none;
+    background-color: transparent;
+    border: 3px solid black;
+    border-radius: 0.6em;
+    color: black;
+    cursor: pointer;
+    //display: flex;
+    //align-self: center;
+    //font-size: 1rem;
+    font-weight: 400;
+    line-height: 2;
+    //margin: 20px;
+    //padding: 1.2em 2.8em;
+    text-decoration: none;
+    text-align: center;
+    //text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+  
+    &:hover, &:focus {
+      color: black;
+      outline: 0;
+    }
+    // border-color:black;
+    // color: black;
+    // box-shadow: 0 0 40px 40px #F9E79F inset, 0 0 0 0 $yellow;
+    // transition: all 150ms ease-in-out;
+    
+    // &:hover {
+    //   box-shadow: 0 0 10px 0 $yellow inset, 0 0 10px 4px $yellow;
+    //   background-image: url("C:/laragon/www/shopping/src/assets/coin.png");
+    //   background-repeat: no-repeat;
+    //   background-size: 30px;
+    //   padding-left: 30px;
+    //   padding-top: -20px;
+    // }
+  }
+
+.btn1{
+    border-color:black;
+    color: black;
+    box-shadow: 0 0 40px 40px #F9E79F inset, 0 0 0 0 $yellow;
+    transition: all 150ms ease-in-out;
+    
+    &:hover {
+      box-shadow: 0 0 10px 0 $yellow inset, 0 0 10px 4px $yellow;
+      background-image: url("C:/laragon/www/shopping/src/assets/coin.png");
+      background-repeat: no-repeat;
+      background-size: 30px;
+      padding-left: 30px;
+    }
+}
+
+.btn2{
+    border-color:#0E6655;
+    color: #0E6655;
+    box-shadow: 0 0 40px 40px white inset, 0 0 0 0 #27AE60;
+    transition: all 150ms ease-in-out;
+    
+    &:hover {
+      box-shadow: 0 0 10px 0 #27AE60 inset, 0 0 10px 4px #27AE60;
+    }
+}
+
+.textSh{
+    font-family: cursive;
+    font-size: 5em;
+    color: #F4D03F;
+    text-shadow: 
+        4px 4px 0 #F7DC6F, 
+        8px 8px 0 #F9E79F, 
+  }

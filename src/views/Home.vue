@@ -24,7 +24,7 @@ import BuyStore from "@/store/BuyStore";
 export default {
   components: {
     ShoppingCard,
-    NavbarUser,
+    NavbarUser
   },
   data() {
     return {

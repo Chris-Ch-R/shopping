@@ -1,29 +1,37 @@
 <template>
-  <div>
-      <h1>Register</h1>
-      <form @submit.prevent="register">
+    <div class="bg">
+        <h1>REGISTER</h1>
+        <form @submit.prevent="register">
 
-          <div>
-              <label for="username">Username</label>
-              <input v-model="form.username" type="text" autocomplete="off" placeholder="username">
-          </div>
-          
-          <div>
-              <label for="email">Email</label>
-              <input v-model="form.email" type="text" autocomplete="off" placeholder="email">
-          </div>
+            <div class="container">
+                <div class="control-group">
+                    <input v-model="form.username" type="text" placeholder=" " id="username" autocomplete="off">
+                    <label for="username" class="label-name">
+                    <span>Username</span>
+                    </label>
+                </div>
 
-          <div>
-              <label for="password">Password</label>
-              <input v-model="form.password" type="password">
-          </div>
+                <div class="control-group">
+                    <input v-model="form.email" type="text" placeholder=" " autocomplete="off">
+                    <label for="email" class="label-name">
+                    <span>Email</span>
+                    </label>
+                </div>
 
-          <div>
-              <button type="submit">Register</button>
-          </div>
+                <div class="control-group">
+                    <input v-model="form.password" type="password" placeholder=" " autocomplete="off">
+                    <label for="password" class="label-name">
+                    <span>Password</span>
+                    </label>
+                </div>
 
-      </form>
-  </div>
+                <div class="form-group">
+                    <button class="btn2" type="submit">REGISTER</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
 </template>
 
 <script>
@@ -47,13 +55,14 @@ export default {
                 email: this.form.email,
                 password: this.form.password
             }
+            console.log(this.form)
             let res = await AuthService.register(payload)
-            // console.log(res);
-            // console.log(res.data.user.username);
+            console.log(res);
+            console.log(res.data.user.username);
             if(res.status === 200){
                 // console.log("success");
                 this.$swal("Register Success", `Welcome, ${res.data.user.username}`,"success")
-                this.$router.push('/pokedex')
+                this.$router.push('/')
             }
             else{
                 this.$swal('Register Failed', res.message, 'error')
@@ -63,6 +72,7 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped lang="scss">
+@import '@/assets/cssRegister.scss';
+@import '@/assets/cssAddCoin.scss'
 </style>
