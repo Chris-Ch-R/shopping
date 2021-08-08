@@ -33,13 +33,7 @@
                 d="M4 6h16M4 12h16M4 18h16"
               />
             </svg>
-            <!--
-            Icon when menu is open.
 
-            Heroicon name: outline/x
-
-            Menu open: "block", Menu closed: "hidden"
-          -->
             <svg
               class="hidden h-6 w-6"
               xmlns="http://www.w3.org/2000/svg"
@@ -98,19 +92,41 @@
         >
           <button
             class="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+            @click="getOrders"
           >
             <font-awesome-icon
               icon="shopping-cart"
               class="text-gray-500 text-3xl"
             />
           </button>
+          <div
+            v-if="isOpenCart"
+            class="justify-center items-center flex fixed inset-0 z-0 outline-none focus:outline-none"
+          >
+            <button
+              class="bg-black w-screen h-screen opacity-50 absolute cursor-default"
+              @click="isOpenCart = false"
+            ></button>
+            <div class="bg-gray-300 p-10 rounded-lg z-10 animate-fade-in-down">
+              <div v-for="(order, index) in orders" :key="index">
+                <cart-orders
+                  :name="order.good.goodName"
+                  :price="order.good.cost"
+                  :costType="order.good.cost_type"
+                  :amount="1"
+                  :setImage="order.good.pic"
+                ></cart-orders>
+              </div>
+              <button @click="buyOrders">Buy</button>
+            </div>
+          </div>
 
           <div class="ml-3 relative ">
             <div class="inline">
               <font-awesome-icon icon="coins" class="text-yellow-300" />
             </div>
             <div class="text-white inline">
-              1,000,000 coin
+              {{this.userAcc.acc.coins}} coins
             </div>
           </div>
           <div class="ml-3 relative mr-4">
@@ -118,8 +134,7 @@
               <font-awesome-icon icon="star" class="text-red-500" />
             </div>
             <div class="text-white inline">
-              1,000,000 point
-              
+              {{this.userAcc.acc.points}} point
             </div>
           </div>
 
@@ -158,11 +173,45 @@
 </template>
 
 <script>
+import CartOrders from "@/components/CartOrders.vue";
+import BuyStore from "@/store/BuyStore";
 export default {
   data() {
     return {
+      userAcc: {
+        acc:{},
+        err:""
+      },
+      orders: [],
       isOpen: false,
+      isOpenCart: false,
     };
+  },
+  components: {
+    CartOrders,
+  },
+  created() {
+      
+    this.fetchAccountData();
+    },
+  methods: {
+    getOrders() {
+      // this.orders = BuyStore.getters.orders
+      this.isOpenCart = true;
+      this.orders = BuyStore.getters.orders;
+      console.log(BuyStore.getters.orders);
+    },
+    buyOrders() {
+      
+      BuyStore.dispatch("buy");
+    },
+    fetchAccountData() {
+      BuyStore.getters.userAccounting.then(({ acc, err }) => {
+        this.userAcc.acc = acc;
+        this.userAcc.err = err;
+      });
+    },
+    
   },
 };
 </script>

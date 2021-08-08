@@ -1,3 +1,4 @@
+
 import axios from 'axios'
 import AuthService from '../services/AuthService'
 
@@ -23,15 +24,15 @@ export default {
                 return "Unknow error status: " + e.response.status
             })
     },
-    async addGood(goodName, cost, cost_type, detail, pic) {
+    async addGood(goodName, cost, cost_type, detail, pic, amount) {
         return await axios.post('http://localhost:1337' + '/goods', {
             goodName: goodName,
             cost: cost,
             cost_type: cost_type,
             detail: detail,
-            pic: pic
-        }, 
-        headers()
+            pic: pic,
+            amount: amount
+        }, headers()
         ).catch((e) => {
             if (e.response.status === 400 || e.response.status === 500 )
                 return e.response.data.message[0].messages[0].message
@@ -42,8 +43,7 @@ export default {
         })
     },
     async removeGood(id) {
-        return await axios.delete('http://localhost:1337' + '/goods/' + id, 
-        headers()
+        return await axios.delete('http://localhost:1337' + '/goods/' + id, headers()
         ).catch((e) => {
             if (e.response.status === 400)
                 return e.response.data.message[0].messages[0].message
@@ -57,9 +57,7 @@ export default {
         })
     },
     async updateGood(id, newBody) {
-        return await axios.put('http://localhost:1337' + '/goods/' + id, newBody, 
-        headers()        
-        )
+        return await axios.put('http://localhost:1337' + '/goods/' + id, newBody, headers())
             .catch((e) => {
                 if (e.response.status === 400)
                     return e.response.data.message[0].messages[0].message

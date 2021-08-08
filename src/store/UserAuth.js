@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import AuthService from '@/services/AuthService'
+import AuthService from '../services/AuthService'
 
 Vue.use(Vuex)
 
@@ -21,6 +21,7 @@ export default new Vuex.Store({
         async login({ commit }, data) {
             let err = await AuthService.login(data)
             commit('update')
+            console.log(err);
             return err
         },
         logout({ commit }) {

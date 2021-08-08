@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import BuyManage from './BuyManage'
-import AuthService from './AuthService'
+import AuthService from '../services/AuthService'
 
 Vue.use(Vuex)
 
