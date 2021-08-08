@@ -20,6 +20,7 @@
                 <div class="wrapper">
                     <button class="fancy-button bg-gradient1"><span>Login</span></button>
                 </div>
+                <a href="/register">REGISTER</a>
             </form>
         </div>
     </div>

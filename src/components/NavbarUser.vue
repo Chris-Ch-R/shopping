@@ -277,7 +277,6 @@ export default {
     return {
       isOpen: false,
       isDp: false,
-      coin: 10,
       id: "",
       userAcc: {
         acc:{},
