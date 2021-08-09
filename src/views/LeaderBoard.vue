@@ -9,7 +9,7 @@
 
 <script>
 import ManageGoodsTable from '../components/ManageGoodsTable.vue'
-import PointHistoryStore from '@/store/PointHistoryStore'
+// import PointHistoryStore from '@/store/PointHistoryStore'
 import GoodsStore from '@/store/GoodsStore'
 
 export default {

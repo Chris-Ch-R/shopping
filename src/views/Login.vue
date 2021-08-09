@@ -1,5 +1,6 @@
 <template>
-    <div class="page"> 
+    <div class="page">
+        <h1>LOG IN</h1> 
         <div>
             <img class="posEcom" src="@/assets/ecom.png">
         </div>
@@ -20,8 +21,9 @@
                 <div class="wrapper">
                     <button class="fancy-button bg-gradient1"><span>Login</span></button>
                 </div>
-                <a href="/register">REGISTER</a>
+
             </form>
+            <p class="linkRegis"><a href="/register">REGISTER</a></p>
         </div>
     </div>
 </template>
@@ -41,10 +43,13 @@ export default {
     methods:{
         async login(){
             //let res = await AuthService.login(this.form)
+            console.log(this.form);
             let res = await AuthUser.dispatch('login',this.form)
+            console.log(res.user.username);
             if(res.success){
                  this.$swal("Login Success",`Welcome, ${res.user.username}`, "success")
                  this.$router.push('/')
+                 this.$router.go(0)
             }
             else{
                  this.$swal("Login Failed",res.message,'error')
@@ -55,11 +60,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=Itim&family=MonteCarlo&display=swap');
+@import url(https://fonts.googleapis.com/css?family=Chewy);
 @import '@/assets/_variable.scss';
 .posEcom{
     width: 500px;
-    margin-top: 55px;
+    margin-top: -10px;
 }
 .page{
     margin: 100px 400px;
@@ -67,14 +72,14 @@ export default {
     height: 450px;
     width: 800px;
     background-color: #CACFD2;
-    padding: 10px;
+    padding-top: 10px;
 }
 h1{
-    /* font-family: 'Itim', cursive;
-    font-family: 'MonteCarlo', cursive;
-    font-size: 2px;
-    text-align: center; */
-    margin-top: 50px;
+    margin-top: 20px;
+    margin-left: 450px;
+    font-family: 'Chewy';
+    font-size:30px;
+    color: black;
 }
 .form-item1 input, .form-item2 input{
     display: block;
@@ -91,7 +96,7 @@ h1{
     outline: none;
 }
 .form-item1 input{
-  margin: -250px 0px 20px 500px;
+  margin: -300px 0px 20px 500px;
   background-image: url('C:/laragon/www/shopping/src/assets/login.png');
 }
 .form-item2 input{
@@ -106,7 +111,4 @@ h1{
   font-size: 20px;
   top: -5px;
 }
-// .form-item1,.form-item2 input:focus + label{
-//   /* border-radius: 15px;  */
-// }
 </style>

@@ -9,12 +9,12 @@ export default {
             identifier: email,
             password: password
         }
+        console.log(body);
         return await axios.post(api_endpoint+"/auth/local", body).then(
             (res) => {
                 if(res.status == 200){
+                    console.log(res);
                     localStorage.setItem(auth_key ,JSON.stringify(res.data))
-                    console.log(res.data)
-                    console.log(this.getUser())
                     return{
                         success: true,
                         user: res.data.user,
@@ -43,7 +43,8 @@ export default {
         const user = {
             username: auth ? auth.user.username : "",
             email: auth ? auth.user.email : "",
-            jwt: auth ? auth.jwt : ""
+            jwt: auth ? auth.jwt : "",
+            role: auth ? auth.user.role.name : ""
         }
         return user
     },

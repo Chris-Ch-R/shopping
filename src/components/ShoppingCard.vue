@@ -33,9 +33,13 @@
 </template>
 
 <script>
+import BuyStore from "@/store/BuyStore";
+
 export default {
   data() {
     return {
+      getGoodByID: [],
+      selectedOrder: new Map(),
       urlImage: this.setImage,
     };
   },
@@ -44,15 +48,34 @@ export default {
     name: String,
     detail: String,
     price: Number,
+    costType: String,
     amount: Number,
     setImage: String,
   },
-  created() {},
-  methods:{
-    addToCart(){
-      console.log(this.goodID);
-    }
-  }
+  created() {
+    // console.log("this good: " + this.goodID);
+  },
+  methods: {
+    
+    addToCart() {
+      let payload = {
+        good: {
+          //aka array ของข้อมูลสินค้าที่เรียกซื้อ
+          id: this.goodID,
+          goodName: this.name,
+          cost: this.price,
+          cost_type: this.costType,
+          detail: this.detail,
+          pic: this.setImage,
+          amount: this.amount,
+        },
+        amount: 1,
+      };
+      console.log(payload);
+      BuyStore.dispatch('addOrder',payload)
+      
+    },
+  },
 };
 </script>
 

@@ -7,6 +7,7 @@ import LeaderBoard from '../views/LeaderBoard'
 import Login from '@/views/Login'
 import Logout from '@/views/Logout'
 import Register from '@/views/Register'
+import History from '@/views/History'
 
 Vue.use(VueRouter)
 
@@ -47,6 +48,14 @@ const routes = [
     path: '/leader_board',
     name: 'LeaderBoard',
     component: LeaderBoard,
+    meta:{
+      layout: "Nav2"
+    }
+  },
+  {
+    path: '/historys',
+    name: 'History',
+    component: History,
     meta:{
       layout: "Nav2"
     }

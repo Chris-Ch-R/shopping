@@ -5,6 +5,7 @@
         <shopping-card
           :goodID="good.id"
           :name="good.goodName"
+          :costType="good.cost_type"
           :price="good.cost"
           :amount="good.amount"
           :setImage="`http://localhost:1337${good.pic.url}`"
@@ -18,6 +19,7 @@
 import ShoppingCard from "@/components/ShoppingCard.vue";
 import NavbarUser from "@/components/NavbarUser.vue";
 import GoodsStore from "@/store/GoodsStore";
+import BuyStore from "@/store/BuyStore";
 
 export default {
   components: {
@@ -26,6 +28,7 @@ export default {
   },
   data() {
     return {
+      
       goods: [],
     };
   },
@@ -34,6 +37,7 @@ export default {
     this.getGoods();
   },
   methods: {
+    
     async getGoods() {
       this.goods = await GoodsStore.getters.allGood;
       console.log(this.goods);
