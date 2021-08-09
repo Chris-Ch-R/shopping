@@ -1,5 +1,5 @@
 
-import AuthService from './AuthService'
+import AuthService from '../services/AuthService'
 import axios from 'axios'
 
 export default {
