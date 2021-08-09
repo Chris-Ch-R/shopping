@@ -42,7 +42,6 @@ export default new Vuex.Store({
         return await BuyManage.buy(this.getters.ordersArr.data).then(({data, err}) => {
           if (!err){
             commit('update')
-            commit('clearOrder')
           }
           else return err
         })
