@@ -332,6 +332,7 @@
 
 <script>
 import BuyStore from "@/store/BuyStore";
+import CartOrders from '@/components/CartOrders'
 export default {
   data() {
     return {

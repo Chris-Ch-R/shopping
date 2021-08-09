@@ -1,25 +1,24 @@
 <template>
-  <div>
-    Add Goods
+  <div class="grid-container">
+    <span>ADD GOODS</span> 
 
-    <div>
-      <div>
-        <label for="name">goodName</label>
-        <input type="text" v-model="form.goodName" />
+    <div class="pos">
+      <div class="pos-bottom">
+        <label class="text-base" for="name">GOOD'S NAME</label><br>
+        <input  type="text" v-model="form.goodName" />
       </div>
 
-      <div>
-        <label for="name">cost</label>
+      <div class="pos-bottom">
+        <label class="text-base" for="name">COST</label><br>
         <input type="number" v-model="form.cost" />
       </div>
 
-      <div>
-        <label for="type">cost_type</label>
+      <div class="pos-bottom">
+        <label class="text-base" for="type">COST_TYPE</label><br>
         <select
           id="vehicle_id"
           name="vehicle_id"
-          class="mt-1 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-          
+          class="mt-1 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"          
           v-model="form.cost_type"
         >
           <option value="">-- select cost type --</option>
@@ -29,23 +28,23 @@
         <!-- <input type="text" v-model="form.cost_type" /> -->
       </div>
 
-      <div>
-        <label for="type">detail</label>
+      <div class="pos-bottom">
+        <label class="text-base" for="type">DETAIL</label><br>
         <textarea  v-model="form.detail" />
       </div>
 
-      <div>
-        <label for="type">amount</label>
+      <div class="pos-bottom">
+        <label class="text-base" for="type">AMOUNT</label><br>
         <input type="number" v-model="form.amount" />
       </div>
 
-      <div>
-        <label for="type">picture</label>
+      <div class="pos-bottom">
+        <label class="text-base" for="type">PICTURE</label><br>
         <input type="file" @change="handleChange" />
       </div>
 
       <div>
-        <button @click="addGoods">Add</button>
+        <button class="btn1" @click="addGoods">Add</button>
       </div>
     </div>
   </div>
@@ -123,4 +122,7 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped lang="scss">
+@import "@/assets/cssAddGoods.scss";
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap");
+</style>
