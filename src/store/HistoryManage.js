@@ -37,7 +37,8 @@ export default {
             if(!dateData){
                 mapCount.set(arr[i].email, {data: arr[i], amount:arr[i].points});
             }else{
-                mapCount.set(arr[i].email, {data: dateData.data, amount: dateData.amount + arr[i].points});
+                mapCount.set(arr[i].email, {data: dateData.data, 
+                    amount: dateData.amount + arr[i].points});
             }
         }
         let dataSortingArr = Array.from(mapCount.values())
@@ -58,6 +59,12 @@ export default {
                 "http://localhost:1337" + '/histories?email=' + AuthService.getUser().email
                 , headers())
                 .then((res)=>{
+                    if(res.data)
+                    res.data.sort((a,b)=>{
+                        let time1 = new Date(a.dateEvents)
+                        let time2 = new Date(b.dateEvents)
+                        return time2 - time1
+                    })
                     return {data:res.data, err:""}
                 })
                 .catch(catchErr)
