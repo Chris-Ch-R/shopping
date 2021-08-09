@@ -1,8 +1,13 @@
 <template>
   <div>
-    <div class="grid grid-cols-2 divide-x divide-green-500 ">
-      <leader-board-table></leader-board-table>
-      <leader-board-table></leader-board-table>
+    <div class="">
+      <p>ระหว่างวันที่</p><input type="date" v-model="form.dateStart">
+      <p>ถึงวันที่</p>
+      <input type="date" v-model="form.dateEnd">
+      <p></p>
+      <button @click="click">ตกลง</button>
+      <leader-board-table :dataLeader="recieves"></leader-board-table>
+      <leader-board-table :dataLeader="trade"></leader-board-table>
     </div>
   </div>
 </template>
@@ -17,23 +22,51 @@ export default {
   data() {
     return {
       users: [],
-    };
+      form:{
+        dateStart:"",
+        dateEnd:"",
+      },
+      recieves: [],
+      trade: [],
+    }
   },
   components: {
     LeaderBoardTable,
   },
   created() {
+    this.getReceiveHistory();
+    this.getTradeHistory();
     this.getUser();
   },
   methods: {
     async getUser() {
       this.users = await GoodsStore.getters.allGood;
-      PointsHistoryStore.dispatch("searchReceiveHistory", {
-        dateStart: new Date("2021/08/07"), //จุดเริ่มต้น ให้ส่งเป็น format years/mm/dd
-        dateEnd: new Date("2021/08/15"), //จุดสิ้นสุด ให้ส่งเป็น format years/mm/dd
-      });
+      
       // console.log("hello");
-      // console.log(PointsHistoryStore.getters.receiveHistory);
+    },
+    click(){
+      this.getReceiveHistory();
+      this.getTradeHistory();
+    },
+    async getReceiveHistory() {
+      await PointsHistoryStore.dispatch("searchReceiveHistory", {
+        dateStart: new Date(this.form.dateStart), 
+        dateEnd: new Date(this.form.dateEnd), 
+      });
+      this.recieves = PointsHistoryStore.getters.receiveHistory.data;
+      console.log("recieves");
+      console.log(this.recieves);
+    
+    },
+    async getTradeHistory() {
+      await PointsHistoryStore.dispatch("searchTradeHistory", {
+        dateStart: new Date(this.form.dateStart), 
+        dateEnd: new Date(this.form.dateEnd), 
+      });
+      this.trade = PointsHistoryStore.getters.tradeHistory.data;
+      console.log("trade");
+      console.log(this.trade);
+    
     },
   },
 };

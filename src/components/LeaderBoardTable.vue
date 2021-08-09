@@ -12,15 +12,12 @@
               >
                 <th class="py-3 px-6 text-left">#</th>
                 <th class="py-3 px-6 text-left">email</th>
-                <th class="py-3 px-6 text-center">eventType</th>
-                <th class="py-3 px-6 text-center">eventsText</th>
-                <th class="py-3 px-6 text-center">Date</th>
                 <th class="py-3 px-6 text-center">TotalPoint</th>
               </tr>
             </thead>
             <tbody class="text-gray-600 text-sm font-light">
               <tr
-                v-for="(recieve, index) in recieves.data"
+                v-for="(recieve, index) in dataLeader"
                 :key="index"
                 class="border-b border-gray-200 hover:bg-gray-100"
               >
@@ -31,22 +28,11 @@
                   {{ recieve.data.email }}
                 </td>
 
-                <td class="py-3 px-6 text-center">
-                  {{ recieve.data.eventType }}
-                </td>
 
                 <td class="py-3 px-6 text-center">
-                  {{ recieve.data.eventsText }}
+                  {{ recieve.amount }}
                 </td>
 
-                <td class="py-3 px-6 text-center">
-                  {{ recieve.data.dateEvents }}
-                </td>
-
-                <td class="py-3 px-6 text-center">
-                  
-                  
-                </td>
               </tr>
             </tbody>
           </table>
@@ -64,24 +50,20 @@ export default {
   data() {
     return {
       goods: [],
-      recieves: [],
+      data: [],
+      
       totalRecieve: 0
     };
   },
-  async created() {
-    this.getHistory();
+  props:{
+    dataLeader:Array
+  },
+  created() {
     this.calTotalRecieve()
   },
   methods: {
-    async getHistory() {
-      await PointsHistoryStore.dispatch("searchReceiveHistory", {
-        dateStart: new Date("2021/08/07"), //จุดเริ่มต้น ให้ส่งเป็น format years/mm/dd
-        dateEnd: new Date("2021/08/09"), //จุดสิ้นสุด ให้ส่งเป็น format years/mm/dd
-      });
-      this.recieves = PointsHistoryStore.getters.receiveHistory;
-      console.log(this.recieves.data);
     
-    },
+    
     calTotalRecieve(){
       // this.recieves.data.forEach(element => {
       //   console.log("element");

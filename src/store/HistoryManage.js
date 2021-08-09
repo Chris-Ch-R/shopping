@@ -4,6 +4,8 @@ import axios from 'axios'
 
 export default {
     async getHistoryOnDate(type, dateStart, dateEnd) {
+        
+        console.log("type : " + type);
         if (AuthService.isAuthen()) {
             let role = AuthService.getUser().role
             if (role === "Authenticated") {
@@ -28,6 +30,7 @@ export default {
                 filtedArr.push(arr[i])
             }
         }
+        console.log(dateStart ,dateEnd , filtedArr[0]);
         return filtedArr
     },
     getSortedPriority(arr){
