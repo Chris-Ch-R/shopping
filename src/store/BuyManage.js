@@ -77,6 +77,7 @@ export default {
         if (!err) {
             let { coins, points, err } = this.getTotalCost(orders)
             if(err == ""){
+                console.log(coins, acc.coins - coins)
                 if (acc.coins >= coins && acc.points >= points) {
                     this.decreaseGoodAmount(orders)
                     PointsManage.increaseCondition(coins)
@@ -111,7 +112,6 @@ export default {
         let points = 0
         let err = ""
         for (let i = 0; i < orders.length; i++) {
-            
             if(orders[i].amount > orders[i].good.amount){
                 err = "Amount is over"
                 break;
@@ -121,11 +121,10 @@ export default {
                     coins += orders[i].good.cost
                     break;
                 case "points":
-                    HistoryManage.savingPointHis("trade", orders[i].good.goodName, AuthService.getUser().username)
+                    HistoryManage.savingPointHis("trade", orders[i].good.goodName, orders[i].good.cost)
                     points += orders[i].good.cost
                     break;
             }
-            
         }
         return { coins, points, err }
     },
@@ -134,6 +133,7 @@ export default {
             let good = orders[i].good
             if(good.amount >= orders[i].amount){
                 good.amount -= orders[i].amount
+                console.log(good)
                 await GoodManage.updateGood(good.id, good)
             }
         }
