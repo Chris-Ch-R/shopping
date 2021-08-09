@@ -25,6 +25,9 @@ export default {
             })
     },
     async addGood(goodName, cost, cost_type, detail, pic, amount) {
+        if(typeof pic === 'string'){
+            pic = {url: pic}
+        }
         return await axios.post('http://localhost:1337' + '/goods', {
             goodName: goodName,
             cost: cost,
@@ -57,6 +60,9 @@ export default {
         })
     },
     async updateGood(id, newBody) {
+        if(typeof newBody.pic === 'string'){
+            newBody.pic = {url: newBody.pic}
+        }
         return await axios.put('http://localhost:1337' + '/goods/' + id, newBody, headers())
             .catch((e) => {
                 if (e.response.status === 400)
