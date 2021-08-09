@@ -2,7 +2,10 @@
   <div class="grid grid-cols-5 gap-2">
     <div v-for="(reward, index) in rewards.data" :key="index">
       <shopping-card
+        :goodID="reward.id"
         :name="reward.goodName"
+        :costType="reward.cost_type"
+        :detail="reward.detail"
         :price="reward.cost"
         :amount="reward.amount"
         :setImage="reward.pic"
@@ -28,11 +31,10 @@ export default {
   },
   methods: {
     async getReward() {
-      this.rewards = await GoodsStore.getters.rewardGood
+      this.rewards = await GoodsStore.getters.rewardGood;
       console.log(this.rewards);
     },
   },
-
 };
 </script>
 

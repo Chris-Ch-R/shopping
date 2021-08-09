@@ -106,6 +106,7 @@
               >
 
               <router-link
+              v-if="user.role === 'Authenticated'"
                 to="/leader_board"
                 class="
                   text-gray-300
@@ -332,6 +333,10 @@
 
 <script>
 import BuyStore from "@/store/BuyStore";
+import CartOrders from "@/components/CartOrders";
+import UserAuth from "@/store/UserAuth";
+
+
 export default {
   data() {
     return {
@@ -339,6 +344,7 @@ export default {
         acc: {},
         err: "",
       },
+      user:[],
       isDp: false,
       orders: [],
       isOpen: false,
@@ -351,6 +357,8 @@ export default {
   
   created() {
     this.fetchAccountData();
+    this.user = UserAuth.getters.user
+    console.log(this.user);
   },
   computed: {},
   methods: {

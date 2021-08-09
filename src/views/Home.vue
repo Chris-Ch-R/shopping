@@ -21,7 +21,6 @@ import ShoppingCard from "@/components/ShoppingCard.vue";
 import NavbarUser from "@/components/NavbarUser.vue";
 import GoodsStore from "@/store/GoodsStore";
 import BuyStore from "@/store/BuyStore";
-// :setImage="`http://localhost:1337${good.pic.url}`"
 export default {
   components: {
     ShoppingCard,

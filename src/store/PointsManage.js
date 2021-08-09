@@ -23,6 +23,7 @@ export default {
         return err
     },
     increaseCondition(cost){
+        console.log("cost" + cost);
         if(cost > 1000){
             this.increasePoins(cost)
             .then(()=>{

@@ -65,6 +65,7 @@ export default {
         else return { data: {}, err: "Please login before get points history" }
     },
     async savingPointHis(type, objectName, points) {
+        console.log("points " + points);
         if (AuthService.isAuthen()) {
             let detail = ""
             switch (type) {
