@@ -8,20 +8,27 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     userAccounting: BuyManage.getAccOnCreate(),
-    orders: new Map(),
-    ordersArr: {data: []}
+    orders: getOrdersMap() ? getOrdersMap() :new Map(),
+    ordersArr: getOrdersArr() ? getOrdersArr(): {data: []}
   },
   mutations: {
     async update(state) {
-      state.userAccounting = BuyManage.getAccounting()
+      state.userAccounting = await BuyManage.getAccounting()
+    },
+    clearOrder(state){
+      state.orders = new Map()
+      state.ordersArr = {data: []}
+      localStorage.removeItem(AuthService.getUser().email+'_orders')
     },
     addOrder(state, { good, amount }) {
       state.orders.set(good.id, { good, amount })
       state.ordersArr.data = Array.from(state.orders.values())
+      savingOrders(state.ordersArr)
     },
     deleteOrder(state, id) {
       state.orders.delete(id)
       state.ordersArr.data = Array.from(state.orders.values())
+      savingOrders(state.ordersArr)
     }
   },
   getters: {
@@ -32,12 +39,10 @@ export default new Vuex.Store({
   actions: {
     async buy({ commit }) {
       if (AuthService.isAuthen()){
-        return await BuyManage.buy(this.getters.ordersArr.data).then((err) => {
-          console.log("err :"+ err);
-          console.log(err);
-          console.log("err :"+ !err);
-          if (err.status === 200){
+        return await BuyManage.buy(this.getters.ordersArr.data).then(({data, err}) => {
+          if (!err){
             commit('update')
+            commit('clearOrder')
           }
           else return err
         })
@@ -71,3 +76,22 @@ export default new Vuex.Store({
   modules: {
   }
 })
+
+function getOrdersMap(){
+  let lsMap = new Map()
+  let orderArr = JSON.parse(localStorage.getItem(AuthService.getUser().email+'_orders'))
+  if(orderArr){
+    for(let i=0;i<orderArr.data.length;i++){
+      let data = orderArr.data[i]
+      lsMap.set(data.good.id, { good:data.good, amount:data.amount })
+    }
+    return lsMap
+  }
+}
+function getOrdersArr(){
+    return JSON.parse(localStorage.getItem(AuthService.getUser().email+'_orders'))
+}
+
+function savingOrders(arr){
+  localStorage.setItem(AuthService.getUser().email+'_orders', JSON.stringify(arr) )
+}
