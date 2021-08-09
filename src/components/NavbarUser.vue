@@ -167,15 +167,15 @@
             sm:pr-0
           "
         >
-          <button
+          <router-link
             class="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-            @click="getOrders"
+            to="/shoppingCart"
           >
             <font-awesome-icon
               icon="shopping-cart"
               class="text-gray-500 text-3xl"
             />
-          </button>
+          </router-link>
           <div
             v-if="isOpenCart"
             class="justify-center items-center flex fixed inset-0 z-0 outline-none focus:outline-none"
@@ -185,7 +185,7 @@
               @click="isOpenCart = false"
             ></button>
             <div class="bg-gray-300 p-10 rounded-lg z-10 animate-fade-in-down">
-              <div v-for="(order, index) in orders" :key="index">
+              <div v-for="(order, index) in orders.data" :key="index">
                 <cart-orders
                   :name="order.good.goodName"
                   :price="order.good.cost"
@@ -194,7 +194,6 @@
                   :setImage="order.good.pic"
                 ></cart-orders>
               </div>
-              <button @click="buyOrders">Buy</button>
             </div>
           </div>
 
@@ -202,14 +201,16 @@
             <div class="inline">
               <font-awesome-icon icon="coins" class="text-yellow-300" />
             </div>
-            <div class="text-white inline"> {{ this.userAcc.acc.coins }} coin</div>
+            <div class="text-white inline">
+              {{ this.userAcc.acc.coins }} coin
+            </div>
           </div>
           <div class="ml-3 relative mr-4">
             <div class="inline">
               <font-awesome-icon icon="star" class="text-red-500" />
             </div>
             <div class="text-white inline">
-              {{this.userAcc.acc.points}} point
+              {{ this.userAcc.acc.points }} point
             </div>
           </div>
 
@@ -252,31 +253,69 @@
               @click="isOpen = false"
               class="fixed inset-0 h-screen w-full cursor-default"
             ></button>
-            <div v-if="isOpen" style="z-index: 99" class="fixed inset-0 flex justify-center items-center">
+            <div
+              v-if="isOpen"
+              style="z-index: 99"
+              class="fixed inset-0 flex justify-center items-center"
+            >
               <button
-                class="w-screen h-screen bg-black opacity-50 absolute inset-0" style="z-index: -1"
+                class="w-screen h-screen bg-black opacity-50 absolute inset-0"
+                style="z-index: -1"
                 @click="isOpen = false"
               ></button>
               <div class="bg-yellow-25 p-2 main-container">
                 <h1 class="textSh">ADD COIN</h1>
                 <ul class="grid-wrapper">
-				          <li>
-                    <img src="@/assets/TenCoin.png" width="100 px" height="100 px" class="ml-10">
-                    <button class="btn1" @click="addCoin(10), showMessage(10)"><span>10 coin</span></button>
+                  <li>
+                    <img
+                      src="@/assets/TenCoin.png"
+                      width="100 px"
+                      height="100 px"
+                      class="ml-10"
+                    />
+                    <button class="btn1" @click="addCoin(10), showMessage(10)">
+                      <span>10 coin</span>
+                    </button>
                   </li>
-				          <li>
-                    <img src="@/assets/FCoin.png" width="100 px" height="100 px" class="ml-9">
-                    <button class="btn1" @click="addCoin(50), showMessage(50)"><span>50 coin</span></button>
+                  <li>
+                    <img
+                      src="@/assets/FCoin.png"
+                      width="100 px"
+                      height="100 px"
+                      class="ml-9"
+                    />
+                    <button class="btn1" @click="addCoin(50), showMessage(50)">
+                      <span>50 coin</span>
+                    </button>
                   </li>
-			            <li>
-                    <img src="@/assets/HCoin.png" width="400 px" height="400 px" class="ml-2 -mb-2">
-                    <button class="btn1" @click="addCoin(100), showMessage(100)"><span>100 coin</span></button>
+                  <li>
+                    <img
+                      src="@/assets/HCoin.png"
+                      width="400 px"
+                      height="400 px"
+                      class="ml-2 -mb-2"
+                    />
+                    <button
+                      class="btn1"
+                      @click="addCoin(100), showMessage(100)"
+                    >
+                      <span>100 coin</span>
+                    </button>
                   </li>
-				          <li>
-                    <img src="@/assets/ThCoin.png" width="400 px" height="400 px">
-                    <button class="btn1" @click="addCoin(1000), showMessage(1000)"><span>1000 coin</span></button>
+                  <li>
+                    <img
+                      src="@/assets/ThCoin.png"
+                      width="400 px"
+                      height="400 px"
+                    />
+                    <button
+                      class="btn1"
+                      @click="addCoin(1000), showMessage(1000)"
+                    >
+                      <span>1000 coin</span>
+                    </button>
                   </li>
-			          </ul>
+                </ul>
               </div>
               <!-- <router-link
                 to="/setting"
@@ -292,14 +331,13 @@
 </template>
 
 <script>
-import CartOrders from "@/components/CartOrders.vue";
 import BuyStore from "@/store/BuyStore";
 export default {
   data() {
     return {
       userAcc: {
-        acc:{},
-        err:""
+        acc: {},
+        err: "",
       },
       isDp: false,
       orders: [],
@@ -310,47 +348,46 @@ export default {
   components: {
     CartOrders,
   },
-  created() { 
+  
+  created() {
     this.fetchAccountData();
-    },
+  },
+  computed: {},
   methods: {
     getOrders() {
       // this.orders = BuyStore.getters.orders
       this.isOpenCart = true;
-      this.orders = BuyStore.getters.orders;
-      console.log(BuyStore.getters.orders);
+      this.orders = BuyStore.getters.ordersArr;
+      console.log(this.orders.data);
     },
-    buyOrders() {
-      
-      BuyStore.dispatch("buy");
-      
-    },
-    addCoin(coin){
-      let payload = {amount:coin}
-      BuyStore.dispatch('increaseCoins',payload)
+    
+    addCoin(coin) {
+      let payload = { amount: coin };
+      BuyStore.dispatch("increaseCoins", payload);
     },
     // getCoin(){
     //   return this.coin
     // },
     showMessage(coin) {
-      this.$swal("ADD COIN",`Add Coin ${coin} coin complete`, "success")
+      this.$swal("ADD COIN", `Add Coin ${coin} coin complete`, "success");
     },
     fetchAccountData() {
       BuyStore.getters.userAccounting.then(({ acc, err }) => {
         this.userAcc.acc = acc;
         this.userAcc.err = err;
       });
+      console.log(this.userAcc);
     },
   },
 };
 </script>
 
 <style scoped lang="scss">
-@import '@/assets/cssAddCoin.scss';
+@import "@/assets/cssAddCoin.scss";
 .cut-text {
   width: 50px;
   white-space: nowrap;
   overflow: hidden !important;
   text-overflow: ellipsis;
 }
-</stylev>
+</style>

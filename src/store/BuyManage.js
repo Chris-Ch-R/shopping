@@ -87,7 +87,6 @@ export default {
                         coins: acc.coins - coins,
                         points: acc.points - points
                     }
-                    console.log(newBody);
                     return await axios.put('http://localhost:1337' + '/accountings/' + acc.id, newBody,this.headers())
                         .catch((e) => {
                             if (e.response.status === 400)
@@ -114,6 +113,7 @@ export default {
         let points = 0
         let err = ""
         for (let i = 0; i < orders.length; i++) {
+            
             if(orders[i].amount > orders[i].good.amount){
                 err = "Amount is over"
                 break;
@@ -127,6 +127,7 @@ export default {
                     points += orders[i].good.cost
                     break;
             }
+            
         }
         return { coins, points, err }
     },

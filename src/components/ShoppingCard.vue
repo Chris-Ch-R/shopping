@@ -1,32 +1,27 @@
 <template>
-  <div>
+  <div class=" bg-gray-100 flex items-center mt-8" >
     <div
-      style="width:250px;height: 350px;"
-      class=" rounded overflow-hidden border "
+      class="container mx-auto p-9 bg-white max-w-sm rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300"
     >
-      <div class="">
-        <img
-          class=" bg-cover "
-          style="width: 250px; height: 200px"
-          :src="setImage"
-        />
-      </div>
-      <div class="px-3 pb-2">
-        <div class="pt-2">
-          <i class="far fa-heart cursor-pointer"></i>
-          <span class="text-sm text-gray-400 font-medium">{{ name }}</span>
+      <img class="rounded-xl mx-auto" :src="setImage" alt="" 
+      style="width:275px; height:200px"/>
+      <div class="flex justify-between items-center">
+        <div>
+          <h1 class="mt-5 text-2xl font-semibold">{{ name }}</h1>
+          <p class="mt-2">{{ price }} บาท</p>
         </div>
-        <div class="pt-1">
-          <div class="mb-2 text-sm">
-            <span class="font-medium mr-2">ราคา = {{ price }}</span>
-          </div>
+        <div>
+          <h1 class="mt-5 text-2xl font-semibold"> จำนวน</h1>
+          <p class="mt-2">{{amount}} ชิ้น</p>
         </div>
-        <div class="mb-2">จำนวนคงเหลือ: {{ amount }}</div>
-      </div>
-      <div>
-        <button @click="addToCart">
-          AddToCart
-        </button>
+        <div>
+          <button
+            class="text-white text-md font-semibold bg-green-400 py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition duration-500 transform-gpu hover:scale-110 "
+            @click="addToCart"
+          >
+            Add
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -60,7 +55,6 @@ export default {
     addToCart() {
       let payload = {
         good: {
-          //aka array ของข้อมูลสินค้าที่เรียกซื้อ
           id: this.goodID,
           goodName: this.name,
           cost: this.price,
