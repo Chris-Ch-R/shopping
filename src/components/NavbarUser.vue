@@ -331,11 +331,15 @@
 
 <script>
 import BuyStore from "@/store/BuyStore";
+<<<<<<< HEAD
+import CartOrders from '@/components/CartOrders'
+=======
 import CartOrders from "@/components/CartOrders";
 import UserAuth from "@/store/UserAuth";
 import CountingStore from "@/store/CountingStore";
 
 
+>>>>>>> 5c98897c2abd4a0605e1d94f5b05f1aaedd7d5ba
 export default {
   data() {
     return {
