@@ -3,7 +3,7 @@
     <div
       class="container mx-auto p-9 bg-white max-w-sm rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition duration-300"
     >
-      <img class="rounded-xl mx-auto" :src="setImage" alt="" 
+      <img class="rounded-xl mx-auto" :src="`http://localhost:1337${setImage.url}`" alt="" 
       style="width:275px; height:200px"/>
       <div class="flex justify-between items-center">
         <div>
@@ -45,10 +45,9 @@ export default {
     price: Number,
     costType: String,
     amount: Number,
-    setImage: String,
+    setImage: Object,
   },
   created() {
-    // console.log("this good: " + this.goodID);
   },
   methods: {
     
@@ -65,11 +64,12 @@ export default {
         },
         amount: 1,
       };
-      console.log(payload);
       BuyStore.dispatch('addOrder',payload)
       
     },
   },
+  created(){
+  }
 };
 </script>
 

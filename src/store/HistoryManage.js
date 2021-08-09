@@ -6,7 +6,8 @@ export default {
     async getHistoryOnDate(type, dateStart, dateEnd) {
         if (AuthService.isAuthen()) {
             let role = AuthService.getUser().role
-            if (role === "Admin") {
+            if (role === "Authenticated") {
+            // if (role === "Admin") {
                 return await axios.get(
                     "http://localhost:1337" + '/histories?eventType=' + type
                     , headers())
@@ -31,7 +32,6 @@ export default {
     },
     getSortedPriority(arr){
         let mapCount = new Map()
-        console.log(arr)
         for(let i=0;i<arr.length;i++){
             let dateData = mapCount.get(arr[i].email);
             if(!dateData){

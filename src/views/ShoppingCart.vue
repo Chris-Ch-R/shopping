@@ -53,7 +53,7 @@ export default {
     },
     buyOrders() {
       BuyStore.dispatch("buy").then(() => {
-        this.$swal("Login Success", "การสั่งซื้อสำเร็จ", "success");
+        this.$swal("Buy Success", "ชำระเงินเสร็จสิ้น", "success");
         this.orders.data.forEach((element) => {
           let payload = {
             id:element.good.id
@@ -64,13 +64,7 @@ export default {
         this.$router.push("/");
       });
     },
-    deleteOrder() {
-      console.log("dele");
-      this.orders.forEach((element) => {
-        console.log(element);
-        
-      });
-    },
+    
   },
 };
 </script>

@@ -105,8 +105,8 @@
                 >Reward</router-link
               >
 
-              <a
-                href="#"
+              <router-link
+                to="/leader_board"
                 class="
                   text-gray-300
                   hover:bg-gray-700
@@ -117,7 +117,7 @@
                   text-sm
                   font-medium
                 "
-                >Leader Board</a
+                >Leader Board</router-link
               >
 
               <a

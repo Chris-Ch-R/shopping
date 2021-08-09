@@ -47,7 +47,6 @@ export default {
     },
     async createAccounting() {
         let user = AuthService.getUser();
-        console.log(user)
         if (user) {
             let body = {
                 email: user.email,
@@ -60,7 +59,6 @@ export default {
                 }
             })
                 .then(() => {
-                    console.log("yo")
                     return this.getAccounting()
                 })
                 .catch((e) => {

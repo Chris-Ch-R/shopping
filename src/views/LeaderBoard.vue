@@ -1,38 +1,37 @@
 <template>
   <div>
-      <div class="grid grid-cols-2 divide-x divide-green-500 ">
-          <manage-goods-table></manage-goods-table>
-          <manage-goods-table></manage-goods-table>
-      </div>
+    <div class="">
+      <leader-board-table></leader-board-table>
+      <leader-board-table></leader-board-table>
+    </div>
   </div>
 </template>
 
 <script>
-import ManageGoodsTable from '../components/ManageGoodsTable.vue'
+import LeaderBoardTable from "../components/LeaderBoardTable.vue";
 // import PointHistoryStore from '@/store/PointHistoryStore'
-import GoodsStore from '@/store/GoodsStore'
+import GoodsStore from "@/store/GoodsStore";
+import PointsHistoryStore from "@/store/PointsHistoryStore";
 
 export default {
-    data(){
-        return{
-            users:[]
-        }
+  data() {
+    return {
+      users: [],
+    };
+  },
+  components: {
+    LeaderBoardTable,
+  },
+  created() {
+    this.getUser();
+  },
+  methods: {
+    async getUser() {
+      // console.log("hello");
+      // console.log(PointsHistoryStore.getters.receiveHistory);
     },
-    components:{
-        ManageGoodsTable
-    },
-    created(){
-        this.getUser()
-    },
-    methods:{
-        async getUser(){
-            this.users = await GoodsStore.getters.allGood
-        }
-    }
-
-}
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

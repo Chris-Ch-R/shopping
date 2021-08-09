@@ -5,7 +5,7 @@
         :name="reward.goodName"
         :price="reward.cost"
         :amount="reward.amount"
-        :setImage="`http://localhost:1337${reward.pic.url}`"
+        :setImage="reward.pic"
       ></shopping-card>
     </div>
   </div>
