@@ -62,6 +62,9 @@ export default new Vuex.Store({
     },
     addOrder({ commit }, { good, amount }) {
       if (good.amount >= amount) {
+        if(typeof good.pic === "string"){
+           good.pic = {url: good.pic}
+        }
         commit('addOrder', { good, amount })
       }
       else return "Amount is over"
