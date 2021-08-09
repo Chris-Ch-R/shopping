@@ -75,10 +75,10 @@ export default {
         if (AuthService.isAuthen()) {
             let detail = ""
             switch (type) {
-                case 'receive':
+                case 'trade':
                     detail = "trade " + points + " points with the " + objectName
                     break;
-                case 'trade':
+                case 'receive':
                     detail = "receive " + points + " points by " + objectName
                     break;
             }
