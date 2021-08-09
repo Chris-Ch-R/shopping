@@ -106,7 +106,7 @@
               >
 
               <router-link
-              v-if="user.role === 'Authenticated'"
+                v-if="user.role === 'admin'"
                 to="/leader_board"
                 class="
                   text-gray-300
@@ -121,8 +121,8 @@
                 >Leader Board</router-link
               >
 
-              <a
-                href="/historys"
+              <router-link
+                to="/historys"
                 class="
                   text-gray-300
                   hover:bg-gray-700
@@ -133,13 +133,13 @@
                   text-sm
                   font-medium
                 "
-                >History</a
+                >History</router-link
               >
-
-              <a
-                href="#"
+              <!-- v-if="user.role === 'Authenticated'" -->
+              <router-link
+                v-if="user.role === 'Admin'"
+                to="/ManageGoods"
                 class="
-                  invisible
                   text-gray-300
                   hover:bg-gray-700
                   hover:text-white
@@ -149,7 +149,7 @@
                   text-sm
                   font-medium
                 "
-                >Calendar</a
+                >ManageGoods</router-link
               >
             </div>
           </div>
@@ -172,14 +172,17 @@
             class="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
             to="/shoppingCart"
           >
-            <font-awesome-icon
-              icon="shopping-cart"
-              class="text-gray-500 text-3xl"
-            />
+            <div class="relative">
+              <font-awesome-icon
+                icon="shopping-cart"
+                class="text-gray-500 text-3xl"
+              />
+              <div class="absolute text-white CNP">{{ count }}</div>
+            </div>
           </router-link>
           <div
             v-if="isOpenCart"
-            class="justify-center items-center flex fixed inset-0 z-0 outline-none focus:outline-none"
+            class="relative justify-center items-center flex fixed inset-0 z-0 outline-none focus:outline-none"
           >
             <button
               class="bg-black w-screen h-screen opacity-50 absolute cursor-default"
@@ -318,11 +321,6 @@
                   </li>
                 </ul>
               </div>
-              <!-- <router-link
-                to="/setting"
-                class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white"
-                >Settings</router-link
-              > -->
             </div>
           </div>
         </div>
@@ -335,6 +333,7 @@
 import BuyStore from "@/store/BuyStore";
 import CartOrders from "@/components/CartOrders";
 import UserAuth from "@/store/UserAuth";
+import CountingStore from "@/store/CountingStore";
 
 
 export default {
@@ -344,38 +343,42 @@ export default {
         acc: {},
         err: "",
       },
-      user:[],
+      user: [],
       isDp: false,
       orders: [],
       isOpen: false,
       isOpenCart: false,
+      count: 0,
     };
   },
   components: {
     CartOrders,
   },
-  
+
+
   created() {
     this.fetchAccountData();
-    this.user = UserAuth.getters.user
+    this.user = UserAuth.getters.user;
     console.log(this.user);
   },
-  computed: {},
+  mounted() {
+    this.count = CountingStore.getters.count
+  },
   methods: {
+    cartCount() {
+      this.orders = BuyStore.getters.ordersArr;
+      console.log(this.orders.data);
+    },
     getOrders() {
-      // this.orders = BuyStore.getters.orders
       this.isOpenCart = true;
       this.orders = BuyStore.getters.ordersArr;
       console.log(this.orders.data);
     },
-    
+
     addCoin(coin) {
       let payload = { amount: coin };
       BuyStore.dispatch("increaseCoins", payload);
     },
-    // getCoin(){
-    //   return this.coin
-    // },
     showMessage(coin) {
       this.$swal("ADD COIN", `Add Coin ${coin} coin complete`, "success");
     },
@@ -392,10 +395,9 @@ export default {
 
 <style scoped lang="scss">
 @import "@/assets/cssAddCoin.scss";
-.cut-text {
-  width: 50px;
-  white-space: nowrap;
-  overflow: hidden !important;
-  text-overflow: ellipsis;
+.CNP {
+  //cart number position
+  right: -10px;
+  top: -10px;
 }
 </style>

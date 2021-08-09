@@ -8,7 +8,7 @@
       <div class="flex justify-between items-center">
         <div>
           <h1 class="mt-5 text-2xl font-semibold">{{ name }}</h1>
-          <p class="mt-2">{{ price }} บาท</p>
+          <p class="mt-2">{{ price }} {{costType}}</p>
         </div>
         <div>
           <h1 class="mt-5 text-2xl font-semibold"> จำนวน</h1>
@@ -29,6 +29,7 @@
 
 <script>
 import BuyStore from "@/store/BuyStore";
+import CountingStore from "@/store/CountingStore";
 
 export default {
   data() {
@@ -65,6 +66,8 @@ export default {
         amount: 1,
       };
       BuyStore.dispatch('addOrder',payload)
+      CountingStore.dispatch('addOneCart')
+      console.log(CountingStore.getters.count);
       
     },
   },
