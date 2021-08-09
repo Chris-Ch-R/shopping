@@ -57,6 +57,8 @@ export default {
         })
     },
     async updateGood(id, newBody) {
+        console.log("updategood :");
+        console.log(newBody);
         return await axios.put('http://localhost:1337' + '/goods/' + id, newBody, headers())
             .catch((e) => {
                 if (e.response.status === 400)

@@ -23,7 +23,7 @@
           v-model="form.cost_type"
         >
           <option value="">-- select cost type --</option>
-          <option value="coin">coin</option>
+          <option value="coins">coins</option>
           <option value="points">points</option>
         </select>
         <!-- <input type="text" v-model="form.cost_type" /> -->

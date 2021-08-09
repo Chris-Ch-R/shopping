@@ -8,7 +8,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     userAccounting: BuyManage.getAccOnCreate(),
-    orders: new Map()
+    orders: new Map(),
+    ordersArr: {data: []}
   },
   mutations: {
     async update(state) {
@@ -16,21 +17,26 @@ export default new Vuex.Store({
     },
     addOrder(state, { good, amount }) {
       state.orders.set(good.id, { good, amount })
+      state.ordersArr.data = Array.from(state.orders.values())
     },
     deleteOrder(state, id) {
       state.orders.delete(id)
+      state.ordersArr.data = Array.from(state.orders.values())
     }
   },
   getters: {
     userAccounting: state => state.userAccounting,
-    orders: state => Array.from(state.orders.values())
+    ordersArr: state => state.ordersArr
   }
   ,
   actions: {
     async buy({ commit }) {
       if (AuthService.isAuthen()){
-        return await BuyManage.buy(Array.from(this.getters.orders)).then((err) => {
-          if (!err){
+        return await BuyManage.buy(this.getters.ordersArr.data).then((err) => {
+          console.log("err :"+ err);
+          console.log(err);
+          console.log("err :"+ !err);
+          if (err.status === 200){
             commit('update')
           }
           else return err

@@ -7,6 +7,7 @@ import LeaderBoard from '../views/LeaderBoard'
 import Login from '@/views/Login'
 import Logout from '@/views/Logout'
 import Register from '@/views/Register'
+import ShoppingCart from '@/views/ShoppingCart'
 
 Vue.use(VueRouter)
 
@@ -65,6 +66,14 @@ const routes = [
     path: '/register',
     name: 'Register',
     component: Register
+  },
+  {
+    path: '/shoppingCart',
+    name: 'ShoppingCart',
+    component: ShoppingCart,
+    meta:{
+      layout: "Nav2"
+    }
   },
 ]
 
