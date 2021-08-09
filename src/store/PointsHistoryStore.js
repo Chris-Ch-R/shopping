@@ -6,26 +6,26 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        receiveHistory:{
-            data:{}
+        receiveHistory: {
+            data: {}
         },
-        tradeHistory:{
-            data:{}
+        tradeHistory: {
+            data: {}
         },
-        allHistory:{
-            data:{}
+        allHistory: {
+            data: {}
         }
     },
     mutations: {
-        updateRceiveHistory(state, {data}){
+        updateRceiveHistory(state, { data }) {
             state.receiveHistory.data = data
         },
-        updateTradeHistory(state, {data}){
+        updateTradeHistory(state, { data }) {
             state.tradeHistory.data = data
         },
-        updateAllHistory(state, {data}){
+        updateAllHistory(state, { data }) {
             state.allHistory.data = data
-        },  
+        },
     },
     getters: {
         receiveHistory: state => state.receiveHistory,
@@ -35,27 +35,28 @@ export default new Vuex.Store({
     actions: {
         async searchReceiveHistory({ commit }, { dateStart, dateEnd }) {
             return await HistoryManage.getHistoryOnDate("receive", dateStart, dateEnd)
-            .then(({data, err})=>{
-                if(!err)
-                    commit('updateRceiveHistory',{data})
-                else return err
-            })
+                .then(({ data, err }) => {
+                    if (!err) {
+                        commit('updateRceiveHistory', { data })
+                    }
+                    else return err
+                })
         },
         async searchTradeHistory({ commit }, { dateStart, dateEnd }) {
             return await HistoryManage.getHistoryOnDate("trade", dateStart, dateEnd)
-            .then(({data, err})=>{
-                if(!err)
-                    commit('updateTradeHistory',{data})
-                else return err
-            })
+                .then(({ data, err }) => {
+                    if (!err)
+                        commit('updateTradeHistory', { data })
+                    else return err
+                })
         },
-        async updateAllHistory({commit}){
+        async updateAllHistory({ commit }) {
             return await HistoryManage.getUserHistory()
-            .then(({data, err})=>{
-                if(!err)
-                    commit('updateAllHistory',{data})
-                else return err
-            })
+                .then(({ data, err }) => {
+                    if (!err)
+                        commit('updateAllHistory', { data })
+                    else return err
+                })
         }
     },
     modules: {

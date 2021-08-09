@@ -105,8 +105,9 @@
                 >Reward</router-link
               >
 
-              <a
-                href="#"
+              <router-link
+              v-if="user.role === 'Authenticated'"
+                to="/leader_board"
                 class="
                   text-gray-300
                   hover:bg-gray-700
@@ -117,7 +118,7 @@
                   text-sm
                   font-medium
                 "
-                >Leader Board</a
+                >Leader Board</router-link
               >
 
               <a
@@ -332,7 +333,14 @@
 
 <script>
 import BuyStore from "@/store/BuyStore";
+<<<<<<< HEAD
 import CartOrders from '@/components/CartOrders'
+=======
+import CartOrders from "@/components/CartOrders";
+import UserAuth from "@/store/UserAuth";
+
+
+>>>>>>> 5c98897c2abd4a0605e1d94f5b05f1aaedd7d5ba
 export default {
   data() {
     return {
@@ -340,6 +348,7 @@ export default {
         acc: {},
         err: "",
       },
+      user:[],
       isDp: false,
       orders: [],
       isOpen: false,
@@ -352,6 +361,8 @@ export default {
   
   created() {
     this.fetchAccountData();
+    this.user = UserAuth.getters.user
+    console.log(this.user);
   },
   computed: {},
   methods: {

@@ -9,7 +9,7 @@
           :detail="good.detail"
           :price="good.cost"
           :amount="good.amount"
-          :setImage="`http://localhost:1337${good.pic.url}`"
+          :setImage="good.pic"
         ></shopping-card>
       </div>
     </div>
@@ -21,7 +21,6 @@ import ShoppingCard from "@/components/ShoppingCard.vue";
 import NavbarUser from "@/components/NavbarUser.vue";
 import GoodsStore from "@/store/GoodsStore";
 import BuyStore from "@/store/BuyStore";
-
 export default {
   components: {
     ShoppingCard,

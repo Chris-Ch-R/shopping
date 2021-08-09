@@ -4,9 +4,12 @@ import axios from 'axios'
 
 export default {
     async getHistoryOnDate(type, dateStart, dateEnd) {
+        
+        console.log("type : " + type);
         if (AuthService.isAuthen()) {
             let role = AuthService.getUser().role
-            if (role === "Admin") {
+            if (role === "Authenticated") {
+            // if (role === "Admin") {
                 return await axios.get(
                     "http://localhost:1337" + '/histories?eventType=' + type
                     , headers())
@@ -27,17 +30,18 @@ export default {
                 filtedArr.push(arr[i])
             }
         }
+        console.log(dateStart ,dateEnd , filtedArr[0]);
         return filtedArr
     },
     getSortedPriority(arr){
         let mapCount = new Map()
-        console.log(arr)
         for(let i=0;i<arr.length;i++){
             let dateData = mapCount.get(arr[i].email);
             if(!dateData){
                 mapCount.set(arr[i].email, {data: arr[i], amount:arr[i].points});
             }else{
-                mapCount.set(arr[i].email, {data: dateData.data, amount: dateData.amount + arr[i].points});
+                mapCount.set(arr[i].email, {data: dateData.data, 
+                    amount: dateData.amount + arr[i].points});
             }
         }
         let dataSortingArr = Array.from(mapCount.values())
@@ -58,6 +62,12 @@ export default {
                 "http://localhost:1337" + '/histories?email=' + AuthService.getUser().email
                 , headers())
                 .then((res)=>{
+                    if(res.data)
+                    res.data.sort((a,b)=>{
+                        let time1 = new Date(a.dateEvents)
+                        let time2 = new Date(b.dateEvents)
+                        return time2 - time1
+                    })
                     return {data:res.data, err:""}
                 })
                 .catch(catchErr)
@@ -65,13 +75,14 @@ export default {
         else return { data: {}, err: "Please login before get points history" }
     },
     async savingPointHis(type, objectName, points) {
+        console.log("points " + points);
         if (AuthService.isAuthen()) {
             let detail = ""
             switch (type) {
-                case 'receive':
+                case 'trade':
                     detail = "trade " + points + " points with the " + objectName
                     break;
-                case 'trade':
+                case 'receive':
                     detail = "receive " + points + " points by " + objectName
                     break;
             }
