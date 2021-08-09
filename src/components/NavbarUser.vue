@@ -121,6 +121,21 @@
               >
 
               <a
+                href="/historys"
+                class="
+                  text-gray-300
+                  hover:bg-gray-700
+                  hover:text-white
+                  px-3
+                  py-2
+                  rounded-md
+                  text-sm
+                  font-medium
+                "
+                >History</a
+              >
+
+              <a
                 href="#"
                 class="
                   invisible
@@ -329,6 +344,9 @@ export default {
       isOpen: false,
       isOpenCart: false,
     };
+  },
+  components: {
+    CartOrders,
   },
   
   created() {

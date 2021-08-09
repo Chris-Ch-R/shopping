@@ -15,18 +15,26 @@ export default new Vuex.Store({
     mutations: {
         update(state){
             state.user = AuthService.getUser()
+        },
+        logout(state){
+            state.user = {}
+        },
+        login(state,user){
+
+            console.log('login',user)
+            state.user = user
         }
     },
     actions: {
         async login({ commit }, data) {
             let err = await AuthService.login(data)
-            commit('update')
+            commit('login',err.user)
             console.log(err);
             return err
         },
         logout({ commit }) {
             AuthService.logout()
-            commit('update')
+            commit('logout')
         },
         async register({ commit }, data) {
             let err = await AuthService.register(data)

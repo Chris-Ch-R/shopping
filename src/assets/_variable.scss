@@ -13,18 +13,12 @@
 	@include gradientBg(180deg, #2ECC71, #1E8449);
 }
 
-a {
-	text-decoration: none;
-  	&:hover,
-	&:focus,
-	&:active {
-	  text-decoration: none;
-   }
-}
+
+// button style
 
 .fancy-button {
 	display: inline-block;
-	margin: 20px;
+	margin: 20px 20px 40px 20px;
 	font-family: 'Heebo', Helvetica, Arial, sans-serif;
 	font-weight: 500;
 	font-size: 16px;
@@ -115,4 +109,52 @@ a {
 
 .bg{
     background-color: gray;
+}
+
+
+//link style
+
+a {
+	margin-left: 650px;
+}
+
+.linkRegis a {
+	position:relative;
+	text-decoration: none;
+	color: black;
+ 	transition:color .15s ease-in-out;
+}
+
+.linkRegis a:hover {
+	background-size: 100% 100%;
+	cursor: pointer;
+}
+
+.linkRegis a:after {
+	display:block;
+	content:"";
+	position: absolute;
+ 	right:0;
+ 	left:0;
+ 	width:100%;
+	height:3px;
+ 	opacity:0;
+	transform:translateY(-150%);
+ 	transition:transform .15s ease-in-out, opacity .15s ease-in-out;
+ 	background-color: #ABEBC6;
+}
+
+.linkRegis a.is-active,
+.linkRegis a:active,
+.linkRegis a:focus,
+.linkRegis a:hover {
+ 	color: #138D75;
+}
+
+.linkRegis a.is-active:after,
+.linkRegis a:active:after,
+.linkRegis a:focus:after,
+.linkRegis a:hover:after {
+ 	transform:translateY(0);
+ 	opacity:1;
 }

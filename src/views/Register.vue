@@ -62,7 +62,7 @@ export default {
             if(res.status === 200){
                 // console.log("success");
                 this.$swal("Register Success", `Welcome, ${res.data.user.username}`,"success")
-                this.$router.push('/')
+                this.$router.push('/login')
             }
             else{
                 this.$swal('Register Failed', res.message, 'error')
