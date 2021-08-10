@@ -14,7 +14,7 @@
       </div>
 
       <div class="pos-bottom">
-        <label class="text-base" for="type">COST_TYPE</label><br>
+        <label class="text-base" for="type">COST TYPE</label><br>
         <select
           id="vehicle_id"
           name="vehicle_id"

@@ -118,7 +118,7 @@
                   text-sm
                   font-medium
                 "
-                >Leader Board</router-link
+                >Leaderboard</router-link
               >
 
               <router-link
@@ -149,7 +149,7 @@
                   text-sm
                   font-medium
                 "
-                >ManageGoods</router-link
+                >Manage Goods</router-link
               >
             </div>
           </div>

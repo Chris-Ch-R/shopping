@@ -4,7 +4,6 @@
           <thead>
               <tr>
                   <th scope="col">Date</th>
-                  <th scope="col">Email</th>
                   <th scope="col">Event type</th>
                   <th scope="col">Detail</th>
               </tr>
@@ -14,7 +13,6 @@
               <tr v-for="(his, index) in history" :key="index" class="row-effect text-left">
 
                 <td v-if="checkEmail(his.email)">{{ his.dateEvents }}</td>
-                <td v-if="checkEmail(his.email)">{{ his.email }}</td>
 
                 <td v-if="checkEmail(his.email)">{{ his.eventType }}</td>
                 <td v-if="checkEmail(his.email)">{{ his.eventsText }}</td>
