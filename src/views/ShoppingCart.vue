@@ -12,7 +12,7 @@
         ></cart-orders>
       </div>
     </div>
-    <button @click="buyOrders">
+    <button class="bg-yellow-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" @click="buyOrders">
       BUY
     </button>
   </div>

@@ -7,12 +7,13 @@
       style="width:275px; height:200px"/>
       <div class="flex justify-between items-center">
         <div>
-          <h1 class="mt-5 text-2xl font-semibold">{{ name }}</h1>
-          <p class="mt-2">{{ price }} {{costType}}</p>
+          <h1 class="mt-5 text-xl font-semibold">{{ name }}</h1>
+          <p class="mt-2">{{ price }} {{costType}}
+            <font-awesome-icon v-if="costType === 'points'" icon="star" class="text-red-500" />
+            <font-awesome-icon v-if="costType === 'coins'" icon="coins" class="text-yellow-600" />
+          </p>
         </div>
         <div>
-          <h1 class="mt-5 text-2xl font-semibold"> จำนวน</h1>
-          <p class="mt-2">{{amount}} ชิ้น</p>
         </div>
         <div>
           <button

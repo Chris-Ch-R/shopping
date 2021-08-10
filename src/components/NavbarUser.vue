@@ -106,7 +106,7 @@
               >
 
               <router-link
-                v-if="user.role === 'admin'"
+                v-if="user.role === 'Admin'"
                 to="/leader_board"
                 class="
                   text-gray-300
@@ -177,7 +177,7 @@
                 icon="shopping-cart"
                 class="text-gray-500 text-3xl"
               />
-              <div class="absolute text-white CNP">{{ count }}</div>
+              <div class="absolute text-white CNP"></div>
             </div>
           </router-link>
           <div
@@ -234,10 +234,22 @@
             >
               <font-awesome-icon icon="sort-down" class="text-red-500" />
               <div
-                class="fixed mt-2 w-48 z-50 bg-white rounded-lg py-2 shadow-xl"
+                class="fixed mr-10 mt-2 w-48 z-50 bg-white rounded-lg py-2 shadow-xl"
                 v-if="isDp"
               >
-                <button @click="isOpen = !isOpen">ADD COIN</button>
+                <button
+                  @click="isOpen = !isOpen"
+                  class="
+                    block
+                    px-4
+                    py-2
+                    text-gray-800
+                    hover:bg-indigo-500
+                    hover:text-white
+                  "
+                >
+                  ADD COIN
+                </button>
                 <router-link
                   to="/logout"
                   class="
@@ -331,15 +343,10 @@
 
 <script>
 import BuyStore from "@/store/BuyStore";
-<<<<<<< HEAD
-import CartOrders from '@/components/CartOrders'
-=======
 import CartOrders from "@/components/CartOrders";
 import UserAuth from "@/store/UserAuth";
 import CountingStore from "@/store/CountingStore";
 
-
->>>>>>> 5c98897c2abd4a0605e1d94f5b05f1aaedd7d5ba
 export default {
   data() {
     return {
@@ -359,15 +366,11 @@ export default {
     CartOrders,
   },
 
-
   created() {
     this.fetchAccountData();
     this.user = UserAuth.getters.user;
-    console.log(this.user);
   },
-  mounted() {
-    this.count = CountingStore.getters.count
-  },
+  mounted() {},
   methods: {
     cartCount() {
       this.orders = BuyStore.getters.ordersArr;

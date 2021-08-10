@@ -1,34 +1,39 @@
 <template>
   <div>
-    <div class="">
-      <p>ระหว่างวันที่</p><input type="date" v-model="form.dateStart">
+    <div>
+      <p>ระหว่างวันที่</p>
+      <input class="border-4" type="date" v-model="form.dateStart" />
       <p>ถึงวันที่</p>
-      <input type="date" v-model="form.dateEnd">
+      <input class="border-4" type="date" v-model="form.dateEnd" />
       <p></p>
-      <button @click="click">ตกลง</button>
-      <leader-board-table :dataLeader="recieves"></leader-board-table>
-      <leader-board-table :dataLeader="trade"></leader-board-table>
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" @click="click">ตกลง</button>
+
+      <leader-board-table
+        :dataLeader="recieves"
+        msg="Top Piont Received"
+      ></leader-board-table>
+      <leader-board-table
+        :dataLeader="trade"
+        msg="Top Piont Used"
+      ></leader-board-table>
     </div>
   </div>
 </template>
 
 <script>
 import LeaderBoardTable from "../components/LeaderBoardTable.vue";
-// import PointHistoryStore from '@/store/PointHistoryStore'
-import GoodsStore from "@/store/GoodsStore";
 import PointsHistoryStore from "@/store/PointsHistoryStore";
 
 export default {
   data() {
     return {
-      users: [],
-      form:{
-        dateStart:"",
-        dateEnd:"",
+      form: {
+        dateStart: "2021-08-09",
+        dateEnd: "2021-08-12",
       },
       recieves: [],
       trade: [],
-    }
+    };
   },
   components: {
     LeaderBoardTable,
@@ -36,37 +41,25 @@ export default {
   created() {
     this.getReceiveHistory();
     this.getTradeHistory();
-    this.getUser();
   },
   methods: {
-    async getUser() {
-      this.users = await GoodsStore.getters.allGood;
-      
-      // console.log("hello");
-    },
-    click(){
+    click() {
       this.getReceiveHistory();
       this.getTradeHistory();
     },
     async getReceiveHistory() {
       await PointsHistoryStore.dispatch("searchReceiveHistory", {
-        dateStart: new Date(this.form.dateStart), 
-        dateEnd: new Date(this.form.dateEnd), 
+        dateStart: new Date(this.form.dateStart),
+        dateEnd: new Date(this.form.dateEnd),
       });
-      this.recieves = PointsHistoryStore.getters.receiveHistory.data;
-      console.log("recieves");
-      console.log(this.recieves);
-    
+      this.recieves = PointsHistoryStore.getters.receiveHistory;
     },
     async getTradeHistory() {
       await PointsHistoryStore.dispatch("searchTradeHistory", {
-        dateStart: new Date(this.form.dateStart), 
-        dateEnd: new Date(this.form.dateEnd), 
+        dateStart: new Date(this.form.dateStart),
+        dateEnd: new Date(this.form.dateEnd),
       });
-      this.trade = PointsHistoryStore.getters.tradeHistory.data;
-      console.log("trade");
-      console.log(this.trade);
-    
+      this.trade = PointsHistoryStore.getters.tradeHistory;
     },
   },
 };

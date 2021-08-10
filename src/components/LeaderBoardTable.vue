@@ -5,6 +5,7 @@
     >
       <div class="w-full lg:w-5/6">
         <div class="bg-white shadow-md rounded my-6">
+          <p class="mt-5 text-xl font-semibold">LeaderBoard ( {{msg}} )</p>
           <table class="min-w-max w-full table-auto">
             <thead>
               <tr
@@ -17,7 +18,7 @@
             </thead>
             <tbody class="text-gray-600 text-sm font-light">
               <tr
-                v-for="(recieve, index) in dataLeader"
+                v-for="(recieve, index) in dataLeader.data"
                 :key="index"
                 class="border-b border-gray-200 hover:bg-gray-100"
               >
@@ -43,8 +44,6 @@
 </template>
 
 <script>
-import PointsHistoryStore from "@/store/PointsHistoryStore";
-import GoodsStore from "@/store/GoodsStore";
 
 export default {
   data() {
@@ -56,20 +55,15 @@ export default {
     };
   },
   props:{
-    dataLeader:Array
+    dataLeader:Array,
+    msg:String
   },
   created() {
-    this.calTotalRecieve()
+    console.log("dataLeader");
+    console.log(this.dataLeader.data);
   },
   methods: {
     
-    
-    calTotalRecieve(){
-      // this.recieves.data.forEach(element => {
-      //   console.log("element");
-      //   console.log(element);
-      // });
-    }
   },
 };
 </script>

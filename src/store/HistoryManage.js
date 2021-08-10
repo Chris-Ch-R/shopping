@@ -4,12 +4,9 @@ import axios from 'axios'
 
 export default {
     async getHistoryOnDate(type, dateStart, dateEnd) {
-        
-        console.log("type : " + type);
         if (AuthService.isAuthen()) {
             let role = AuthService.getUser().role
-            if (role === "Authenticated") {
-            // if (role === "Admin") {
+            if (role === "Admin") {
                 return await axios.get(
                     "http://localhost:1337" + '/histories?eventType=' + type
                     , headers())
@@ -30,7 +27,6 @@ export default {
                 filtedArr.push(arr[i])
             }
         }
-        console.log(dateStart ,dateEnd , filtedArr[0]);
         return filtedArr
     },
     getSortedPriority(arr){
@@ -75,7 +71,6 @@ export default {
         else return { data: {}, err: "Please login before get points history" }
     },
     async savingPointHis(type, objectName, points) {
-        console.log("points " + points);
         if (AuthService.isAuthen()) {
             let detail = ""
             switch (type) {
@@ -114,7 +109,6 @@ function headers() {
 
 function catchErr(e) {
     if(!e.response){
-        console.error(e)
         return e
     }
     else if (e.response.status === 400)
@@ -123,7 +117,6 @@ function catchErr(e) {
         return { data: {}, err: "Not found history" }
     }
     else {
-        console.error(e)
         return { data: {}, err: "Unknow error status: " } + e.response.status
     }
 }

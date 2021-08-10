@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-5 gap-2">
+  <div class="grid grid-cols-3 gap-2">
     <div v-for="(reward, index) in rewards.data" :key="index">
       <shopping-card
         :goodID="reward.id"
