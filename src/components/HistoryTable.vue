@@ -55,7 +55,6 @@ export default {
                     sum++
                 }
             }
-            console.log(sum)
             return sum
         }
     },    

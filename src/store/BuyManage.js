@@ -77,7 +77,6 @@ export default {
         if (!err) {
             let { coins, points, err } = this.getTotalCost(orders)
             if (err == "") {
-                console.log(coins, acc.coins - coins)
                 if (acc.coins >= coins && acc.points >= points) {
                     this.decreaseGoodAmount(orders)
                     PointsManage.increaseCondition(coins)
@@ -134,7 +133,6 @@ export default {
             let good = orders[i].good
             if (good.amount >= orders[i].amount) {
                 good.amount -= orders[i].amount
-                console.log(good)
                 await GoodManage.updateGood(good.id, good)
             }
         }

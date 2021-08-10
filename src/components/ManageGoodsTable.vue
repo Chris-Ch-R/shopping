@@ -153,7 +153,6 @@ export default {
   methods: {
     async getGoods() {
       this.goods = await GoodsStore.getters.allGood;
-      console.log(this.goods.data);
     },
     openForm(index, good) {
       this.editIndex = index;
@@ -188,11 +187,9 @@ export default {
       this.closeForm();
     },
     deleteGood(good) {
-      //todo SweetAlert
       let payload = {
         id: good.id,
       };
-      // console.log(good);
       GoodsStore.dispatch("removeGood", payload);
       location.reload();
     },

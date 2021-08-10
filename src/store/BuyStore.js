@@ -57,8 +57,6 @@ export default new Vuex.Store({
   actions: {
     async buy({ commit }) {
       if (AuthService.isAuthen()){
-        console.log("Order Arr");
-        console.log(this.getters.ordersArr.data);
         return await BuyManage.buy(this.getters.ordersArr.data).then(({data, err}) => {
           if (!err){
             commit('update')

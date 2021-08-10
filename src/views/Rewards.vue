@@ -32,7 +32,6 @@ export default {
   methods: {
     async getReward() {
       this.rewards = await GoodsStore.getters.rewardGood;
-      console.log(this.rewards);
     },
   },
 };

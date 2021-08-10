@@ -59,8 +59,6 @@ export default {
     msg:String
   },
   created() {
-    console.log("dataLeader");
-    console.log(this.dataLeader.data);
   },
   methods: {
     

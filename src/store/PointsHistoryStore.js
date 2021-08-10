@@ -37,9 +37,6 @@ export default new Vuex.Store({
             return await HistoryManage.getHistoryOnDate("receive", dateStart, dateEnd)
                 .then(({ data, err }) => {
                     if (!err) {
-                        console.log("data");
-                        console.log(data);
-                        console.log(this.state.receiveHistory);
                         commit('updateRceiveHistory', { data })
                     }
                     else return err

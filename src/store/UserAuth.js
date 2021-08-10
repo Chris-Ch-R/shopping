@@ -20,8 +20,6 @@ export default new Vuex.Store({
             state.user = {}
         },
         login(state,user){
-
-            console.log('login',user)
             state.user = user
         }
     },
@@ -29,7 +27,6 @@ export default new Vuex.Store({
         async login({ commit }, data) {
             let err = await AuthService.login(data)
             commit('login',err.user)
-            console.log(err);
             return err
         },
         logout({ commit }) {

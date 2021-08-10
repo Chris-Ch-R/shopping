@@ -11,8 +11,6 @@ export default {
     mounted(){
         AuthUser.dispatch('logout')
         this.$router.push('/login')
-        console.log(AuthService.isAuthen())
-        console.log(AuthService.getJWT())
     }
 }
 </script>

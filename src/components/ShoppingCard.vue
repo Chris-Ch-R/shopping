@@ -68,7 +68,6 @@ export default {
       };
       BuyStore.dispatch('addOrder',payload)
       CountingStore.dispatch('addOneCart')
-      console.log(CountingStore.getters.count);
       
     },
   },

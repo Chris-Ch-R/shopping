@@ -355,12 +355,10 @@ export default {
   methods: {
     cartCount() {
       this.orders = BuyStore.getters.ordersArr;
-      console.log(this.orders.data);
     },
     getOrders() {
       this.isOpenCart = true;
       this.orders = BuyStore.getters.ordersArr;
-      console.log(this.orders.data);
     },
 
     addCoin(coin) {
