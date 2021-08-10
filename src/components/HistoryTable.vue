@@ -5,8 +5,8 @@
               <tr>
                   <th scope="col">Date</th>
                   <th scope="col">Email</th>
-                  <th scope="col">eventType</th>
-                  <th scope="col">eventText</th>
+                  <th scope="col">Event type</th>
+                  <th scope="col">Detail</th>
               </tr>
           </thead>
 
