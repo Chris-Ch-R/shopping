@@ -41,7 +41,7 @@ export default new Vuex.Store({
     },
     loadData(state){
       BuyManage.getAccOnCreate().then(({acc, err})=>{
-        let acc1 = localStorage.getItem(state.userAccounting.acc.email+"_acc")
+        let acc1 = localStorage.getItem(acc.email+"_acc")
         if(!acc1)
         state.userAccounting.acc = acc
         else state.userAccounting.acc = JSON.parse(acc1)
