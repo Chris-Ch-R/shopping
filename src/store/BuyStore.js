@@ -17,6 +17,7 @@ export default new Vuex.Store({
       if(!err && state.userAccounting.acc){
         state.userAccounting.acc.coins -= coins
         state.userAccounting.acc.points -= points
+        localStorage.setItem(state.userAccounting.acc.email+"_acc", JSON.stringify(state.userAccounting.acc))
       }
     },
     updateCoin(state, {amount}){
@@ -40,7 +41,10 @@ export default new Vuex.Store({
     },
     loadData(state){
       BuyManage.getAccOnCreate().then(({acc, err})=>{
+        let acc1 = localStorage.getItem(state.userAccounting.acc.email+"_acc")
+        if(!acc1)
         state.userAccounting.acc = acc
+        else state.userAccounting.acc = JSON.parse(acc1)
       })
     }
   },
