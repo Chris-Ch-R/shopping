@@ -14,12 +14,15 @@ export default new Vuex.Store({
   mutations: {
     async update(state) {
       let { coins, points, err } = getTotalCost(state.ordersArr.data)
-      console.log(coins, points, err)
       if(!err && state.userAccounting.acc){
         state.userAccounting.acc.coins -= coins
         state.userAccounting.acc.points -= points
       }
     },
+    updateCoin(state, {amount}){
+      state.userAccounting.acc.coins += amount
+    }
+    ,
     clearOrder(state){
       state.orders = new Map()
       state.ordersArr = {data: []}
@@ -64,7 +67,7 @@ export default new Vuex.Store({
       if (AuthService.isAuthen()){
         return await BuyManage.increaseCoins(amount).then((err) => {
           if (!err){
-            commit('update')
+            commit('updateCoin', {amount})
           }
           else return err
         })
