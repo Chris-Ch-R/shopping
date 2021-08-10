@@ -7,13 +7,18 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    userAccounting: BuyManage.getAccOnCreate(),
+    userAccounting: {acc:{},err:""},
     orders: getOrdersMap() ? getOrdersMap() :new Map(),
     ordersArr: getOrdersArr() ? getOrdersArr(): {data: []}
   },
   mutations: {
     async update(state) {
-      state.userAccounting = await BuyManage.getAccounting()
+      let { coins, points, err } = getTotalCost(state.ordersArr.data)
+      console.log(coins, points, err)
+      if(!err && state.userAccounting.acc){
+        state.userAccounting.acc.coins -= coins
+        state.userAccounting.acc.points -= points
+      }
     },
     clearOrder(state){
       state.orders = new Map()
@@ -29,6 +34,11 @@ export default new Vuex.Store({
       state.orders.delete(id)
       state.ordersArr.data = Array.from(state.orders.values())
       savingOrders(state.ordersArr)
+    },
+    loadData(state){
+      BuyManage.getAccOnCreate().then(({acc, err})=>{
+        state.userAccounting.acc = acc
+      })
     }
   },
   getters: {
@@ -75,6 +85,9 @@ export default new Vuex.Store({
     },
     deleteOrder({ commit }, { id }) {
       commit('deleteOrder', id)
+    },
+    loadData({commit}){
+      commit('loadData')
     }
   },
   modules: {
@@ -98,4 +111,26 @@ function getOrdersArr(){
 
 function savingOrders(arr){
   localStorage.setItem(AuthService.getUser().email+'_orders', JSON.stringify(arr) )
+}
+
+function getTotalCost(orders) {
+  let coins = 0
+  let points = 0
+  let err = ""
+  for (let i = 0; i < orders.length; i++) {
+      if(orders[i].amount > orders[i].good.amount){
+          err = "Amount is over"
+          break;
+      }
+      switch(orders[i].good.cost_type){
+          case "coins":
+              coins += orders[i].good.cost
+              break;
+          case "points":
+              HistoryManage.savingPointHis("trade", orders[i].good.goodName, orders[i].good.cost)
+              points += orders[i].good.cost
+              break;
+      }
+  }
+  return { coins, points, err }
 }

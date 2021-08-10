@@ -41,10 +41,7 @@ export default {
 
   methods: {
     fetchAccountData() {
-      BuyStore.getters.userAccounting.then(({ acc, err }) => {
-        this.userAcc.acc = acc;
-        this.userAcc.err = err;
-      });
+      this.userAcc = BuyStore.getters.userAccounting
     },
     getOrders() {
       // this.orders = BuyStore.getters.orders

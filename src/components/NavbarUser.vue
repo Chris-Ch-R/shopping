@@ -390,11 +390,8 @@ export default {
       this.$swal("ADD COIN", `Add Coin ${coin} coin complete`, "success");
     },
     fetchAccountData() {
-      BuyStore.getters.userAccounting.then(({ acc, err }) => {
-        this.userAcc.acc = acc;
-        this.userAcc.err = err;
-      });
-      console.log(this.userAcc);
+      this.userAcc = BuyStore.getters.userAccounting
+      BuyStore.dispatch('loadData')
     },
   },
 };
