@@ -5,7 +5,7 @@
     >
       <div class="w-full lg:w-5/6">
         <div class="bg-white shadow-md rounded my-6">
-          <p class="mt-5 text-xl font-semibold">LeaderBoard ( {{msg}} )</p>
+          <p class="mt-5 text-xl font-semibold">Leaderboard ( {{msg}} )</p>
           <table class="min-w-max w-full table-auto">
             <thead>
               <tr
@@ -13,7 +13,7 @@
               >
                 <th class="py-3 px-6 text-left">#</th>
                 <th class="py-3 px-6 text-left">email</th>
-                <th class="py-3 px-6 text-center">TotalPoint</th>
+                <th class="py-3 px-6 text-center">Total Point</th>
               </tr>
             </thead>
             <tbody class="text-gray-600 text-sm font-light">

@@ -11,9 +11,9 @@
                 class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal"
               >
                 <th class="py-3 px-6 text-left">#</th>
-                <th class="py-3 px-6 text-left">GoodName</th>
+                <th class="py-3 px-6 text-left">Good name</th>
                 <th class="py-3 px-6 text-center">Cost</th>
-                <th class="py-3 px-6 text-center">Cost_type</th>
+                <th class="py-3 px-6 text-center">Cost type</th>
                 <th class="py-3 px-6 text-center">Detail</th>
                 <th class="py-3 px-6 text-center">Actions</th>
               </tr>
