@@ -97,11 +97,11 @@ h1{
 }
 .form-item1 input{
   margin: -300px 0px 20px 500px;
-  background-image: url('C:/laragon/www/shopping/src/assets/login.png');
+  background-image: url('../assets/login.png');
 }
 .form-item2 input{
   margin: 50px 0px 20px 500px;
-  background-image: url('C:/laragon/www/shopping/src/assets/key.png');
+  background-image: url('../assets/key.png');
 }
 .form-item1 input:focus, .form-item2 input:focus{
   border-color: #2ECC71 ;

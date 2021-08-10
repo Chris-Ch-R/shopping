@@ -50,7 +50,7 @@ export default {
     },
     buyOrders() {
       BuyStore.dispatch("buy").then(() => {
-        this.$swal("Buy Success", "ชำระเงินเสร็จสิ้น", "success");
+        
         this.orders.data.forEach((element) => {
           let payload = {
             id:element.good.id

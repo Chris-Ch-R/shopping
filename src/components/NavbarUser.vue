@@ -180,26 +180,7 @@
               <div class="absolute text-white CNP"></div>
             </div>
           </router-link>
-          <div
-            v-if="isOpenCart"
-            class="relative justify-center items-center flex fixed inset-0 z-0 outline-none focus:outline-none"
-          >
-            <button
-              class="bg-black w-screen h-screen opacity-50 absolute cursor-default"
-              @click="isOpenCart = false"
-            ></button>
-            <div class="bg-gray-300 p-10 rounded-lg z-10 animate-fade-in-down">
-              <div v-for="(order, index) in orders.data" :key="index">
-                <cart-orders
-                  :name="order.good.goodName"
-                  :price="order.good.cost"
-                  :costType="order.good.cost_type"
-                  :amount="1"
-                  :setImage="order.good.pic"
-                ></cart-orders>
-              </div>
-            </div>
-          </div>
+          
 
           <div class="ml-3 relative">
             <div class="inline">
@@ -390,8 +371,8 @@ export default {
       this.$swal("ADD COIN", `Add Coin ${coin} coin complete`, "success");
     },
     fetchAccountData() {
-      this.userAcc = BuyStore.getters.userAccounting
-      BuyStore.dispatch('loadData')
+      this.userAcc = BuyStore.getters.userAccounting;
+      BuyStore.dispatch("loadData");
     },
   },
 };

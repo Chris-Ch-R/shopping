@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import BuyManage from './BuyManage'
+import HistoryManage from './HistoryManage'
 import AuthService from '../services/AuthService'
 
 Vue.use(Vuex)
