@@ -28,6 +28,7 @@
 <script>
 import HistoryStore from '@/store/HistoryStore.js'
 import UserAuth from '@/store/UserAuth.js'
+import PointsHistoryStore from '@/store/PointsHistoryStore.js'
 export default {
     data(){
         return{
@@ -39,8 +40,8 @@ export default {
     },
     methods:{
         async fetchHistory(){
-            await HistoryStore.dispatch("fetchHistory")
-            this.history = HistoryStore.getters.historys
+            await PointsHistoryStore.dispatch("updateAllHistory")
+            this.history = PointsHistoryStore.getters.allHistory.data
         },
         checkEmail(cE){
             if(UserAuth.getters.user.email === cE){                
